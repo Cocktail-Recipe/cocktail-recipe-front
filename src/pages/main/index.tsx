@@ -21,7 +21,6 @@ const Main = () => {
     <>
       <Navbar links={[]} />
       <Slideshow images={images} />
-      <div>Hello</div>
     </>
   );
 };

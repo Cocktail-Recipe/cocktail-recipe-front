@@ -16,6 +16,8 @@ const SlideshowContainer = styled.div`
   overflow: hidden;
   width: 100%;
   height: 225px;
+  border-bottom-left-radius: 100px 20px;
+  border-bottom-right-radius: 100px 20px;
 `;
 
 const SlideshowWrapper = styled.div`
@@ -40,6 +42,8 @@ const SlideshowImage = styled.div`
 const Slideshow = ({ images }: SlideshowProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
+  const [touchDiff, setTouchDiff] = useState(0);
+  const length = images.length;
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStart(e.touches[0].clientX);
@@ -48,24 +52,31 @@ const Slideshow = ({ images }: SlideshowProps) => {
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     const touchEnd = e.touches[0].clientX;
     const touchDiff = touchStart - touchEnd;
+    setTouchDiff(touchDiff);
+  };
+
+  const handleTouchEnd = () => {
     if (touchDiff > 5) {
       // Move to the next slide
-      setCurrentIndex((currentIndex + 1) % images.length);
+      setCurrentIndex(currentIndex === length - 1 ? currentIndex : currentIndex + 1);
     } else if (touchDiff < -5) {
       // Move to the previous slide
-      setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+      setCurrentIndex(currentIndex === 0 ? currentIndex : currentIndex - 1);
     }
+
+    setTouchStart(0);
+    setTouchDiff(0);
   };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+      if (touchStart === 0) {
+        setCurrentIndex((prevIndex) => (prevIndex === length - 1 ? 0 : prevIndex + 1));
+      }
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, [images.length]);
-
-  console.log(currentIndex);
+  }, [length, touchStart]);
 
   return (
     <SlideshowContainer>
@@ -73,11 +84,21 @@ const Slideshow = ({ images }: SlideshowProps) => {
         {images.map(({ src, alt }, index) => (
           <SlideshowImage
             key={index}
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+            }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            <Image src={src} alt={alt} fill style={{ objectFit: 'cover' }} />
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              style={{
+                objectFit: 'cover',
+              }}
+            />
           </SlideshowImage>
         ))}
       </SlideshowWrapper>
