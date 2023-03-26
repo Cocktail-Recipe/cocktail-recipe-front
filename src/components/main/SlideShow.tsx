@@ -18,6 +18,7 @@ const SlideshowContainer = styled.div`
   height: 225px;
   border-bottom-left-radius: 100px 20px;
   border-bottom-right-radius: 100px 20px;
+  margin-bottom: 20px;
 `;
 
 const SlideshowWrapper = styled.div`
