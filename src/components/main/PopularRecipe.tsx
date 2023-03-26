@@ -4,9 +4,9 @@ import Image from 'next/image';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const PopularRecipeContainer = styled.div``;
+const Container = styled.div``;
 
-const PopularRecipeTitle = styled.div`
+const Title = styled.div`
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
@@ -14,7 +14,7 @@ const PopularRecipeTitle = styled.div`
   padding: 16px;
 `;
 
-const PopularRecipeContentContainer = styled.div`
+const ContentContainer = styled.div`
   overflow-x: scroll;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ const PopularRecipeContentContainer = styled.div`
   padding: 0 16px;
 `;
 
-const PopularRecipeContentWrapper = styled.div`
+const ContentWrapper = styled.div`
   flex: 0 0 auto;
   width: 137px;
   height: 137px;
@@ -37,14 +37,14 @@ const PopularRecipeContentWrapper = styled.div`
   }
 `;
 
-const PopularRecipeImage = styled(Image)`
+const RecipeImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
   position: relative;
 `;
 
-const PopularRecipeContent = styled.div`
+const Content = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -120,18 +120,18 @@ const PopularRecipe: React.FC<PopularRecipeProps> = ({ recipes }) => {
   };
 
   return (
-    <PopularRecipeContainer>
-      <PopularRecipeTitle>인기 레시피</PopularRecipeTitle>
-      <PopularRecipeContentContainer
+    <Container>
+      <Title>인기 레시피</Title>
+      <ContentContainer
         ref={containerRef}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         {recipes.map((item, index) => (
-          <PopularRecipeContentWrapper key={index}>
-            <PopularRecipeImage src={item.src} alt={item.name} fill />
-            <PopularRecipeContent>
+          <ContentWrapper key={index}>
+            <RecipeImage src={item.src} alt={item.name} fill />
+            <Content>
               <ContentHeader>{item.name}</ContentHeader>
               <ContentTag>{item.tags.map((t) => `#${t}`).join(' ')}</ContentTag>
               <ContentHistoryWrapper>
@@ -142,11 +142,11 @@ const PopularRecipe: React.FC<PopularRecipeProps> = ({ recipes }) => {
                 <CommentOutlined style={{ width: 10, height: 10, marginLeft: '3px', marginRight: '1px' }} />
                 <div>{addComma(item.commentCount)}</div>
               </ContentHistoryWrapper>
-            </PopularRecipeContent>
-          </PopularRecipeContentWrapper>
+            </Content>
+          </ContentWrapper>
         ))}
-      </PopularRecipeContentContainer>
-    </PopularRecipeContainer>
+      </ContentContainer>
+    </Container>
   );
 };
 

@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const CategoryContainer = styled.div`
-  margin-top: 16px;
+const Container = styled.div`
+  margin: 16px 0;
 `;
 
-const CategoryTitle = styled.div`
+const Title = styled.div`
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
@@ -14,7 +14,7 @@ const CategoryTitle = styled.div`
   padding: 16px;
 `;
 
-const CategoryContentContainer = styled.div`
+const ContentContainer = styled.div`
   overflow-x: scroll;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ const CategoryContentContainer = styled.div`
   padding: 0 16px;
 `;
 
-const CategoryContentWrapper = styled.div`
+const ContentWrapper = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -90,22 +90,22 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
   };
 
   return (
-    <CategoryContainer>
-      <CategoryTitle>카테고리</CategoryTitle>
-      <CategoryContentContainer
+    <Container>
+      <Title>카테고리</Title>
+      <ContentContainer
         ref={containerRef}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         {categories.map((item, index) => (
-          <CategoryContentWrapper key={index}>
+          <ContentWrapper key={index}>
             <CategoryImage src={item.src} alt={item.name} width={42} height={42} />
             <CategoryName>{item.name}</CategoryName>
-          </CategoryContentWrapper>
+          </ContentWrapper>
         ))}
-      </CategoryContentContainer>
-    </CategoryContainer>
+      </ContentContainer>
+    </Container>
   );
 };
 
