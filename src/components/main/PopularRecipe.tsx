@@ -20,6 +20,7 @@ const PopularRecipeContentContainer = styled.div`
   align-items: center;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  padding: 0 16px;
 `;
 
 const PopularRecipeContentWrapper = styled.div`
