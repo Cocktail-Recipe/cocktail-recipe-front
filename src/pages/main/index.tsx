@@ -131,7 +131,7 @@ const eventPosts = [
 const Main = () => {
   return (
     <>
-      <Navbar links={[]} />
+      <Navbar user={undefined} />
       <Slideshow images={images} />
       <PopularRecipe recipes={popularRecipes} />
       <Category categories={categories} />
