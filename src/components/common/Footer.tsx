@@ -8,7 +8,7 @@ import {
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 60px;
