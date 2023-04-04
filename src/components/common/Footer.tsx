@@ -8,7 +8,7 @@ import {
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 60px;
@@ -35,23 +35,23 @@ const FooterText = styled.span`
 const Footer = () => {
   return (
     <FooterContainer>
-      <FooterLink href="#">
+      <FooterLink href="/main">
         <HomeOutlined style={{ width: 20, height: 20 }} />
         <FooterText>홈</FooterText>
       </FooterLink>
-      <FooterLink href="#">
+      <FooterLink href="/cocktail">
         <LocalBarOutlined style={{ width: 20, height: 20 }} />
         <FooterText>칵테일</FooterText>
       </FooterLink>
-      <FooterLink href="#">
+      <FooterLink href="/community">
         <PeopleOutline style={{ width: 20, height: 20 }} />
         <FooterText>커뮤니티</FooterText>
       </FooterLink>
-      <FooterLink href="#">
+      <FooterLink href="/message">
         <MessageOutlined style={{ width: 20, height: 20 }} />
         <FooterText>메시지</FooterText>
       </FooterLink>
-      <FooterLink href="#">
+      <FooterLink href="/my">
         <AccountCircleOutlined style={{ width: 20, height: 20 }} />
         <FooterText>마이페이지</FooterText>
       </FooterLink>

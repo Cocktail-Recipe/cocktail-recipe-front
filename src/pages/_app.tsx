@@ -5,7 +5,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    padding-bottom: 60px;
     background-color: #EFEFEF;
+    min-height: 100%;
   },
   .scroll {
     &::-webkit-scrollbar {
