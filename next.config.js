@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 's3-alpha-sig.figma.com', // 임시 작업
+        hostname: 'dsx97ocm5rfcr.cloudfront.net',
         port: '',
         pathname: '**',
       },
