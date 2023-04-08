@@ -1,6 +1,7 @@
 import { IconButton } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
-import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FormEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -48,10 +49,19 @@ const SearchButton = styled(IconButton)`
 
 const SearchBar = () => {
   const [search, setSearch] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    setSearch(router.query.query as string);
+  }, [router.query]);
 
   function startSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // ? query로 적용시키고, 해당 쿼리 값을 받으면 조회하도록
+    if (search !== '') {
+      router.push(`/cocktail?query=${search}`);
+    } else {
+      router.push('/cocktail');
+    }
   }
 
   return (
