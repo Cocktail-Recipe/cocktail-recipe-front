@@ -5,7 +5,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  margin: 32px 16px;
+  margin: 32px 16px 16px 16px;
   display: flex;
   justify-content: space-between;
 `;
