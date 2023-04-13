@@ -5,16 +5,14 @@ import { MutableRefObject, useEffect, useState } from 'react';
 
 interface InfiniteScrollInterface {
   containerRef: MutableRefObject<HTMLDivElement | null>;
-  
 }
 
 const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
   const PAGE_LIMIT = 10;
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [items, setItems] = useState<Array<CocktailListType>>([]);
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState('');
 
   const router = useRouter();
 
@@ -41,24 +39,26 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
   }, [hasMore, page, loading]);
 
   useEffect(() => {
-    setQuery((router.query?.query as string) ?? '');
+    setPage(0);
     setItems([]);
     setLoading(false);
-    setPage(1);
+    setHasMore(true);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query?.query]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (query: string, page: number) => {
       try {
+        if (page === 0) return setPage(1);
         setLoading(true);
         const params = { size: PAGE_LIMIT, page, nameOrIngredient: query };
-
+        // ! URL 수정
         const response = await axios(`http://localhost:8080/app/cocktails`, { params });
-        const resut = response.data.result;
+        const result = response.data.result;
 
-        const nextItem = [...items, ...resut.content];
-        setItems(nextItem);
-        setHasMore(resut.content.length >= PAGE_LIMIT);
+        setItems([...items, ...result.content]);
+        setHasMore(result.numberOfElements === PAGE_LIMIT);
       } catch (error) {
         // ! Error Handling
       } finally {
@@ -66,9 +66,9 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
       }
     };
 
-    if (!loading) fetchData();
+    if (!loading) fetchData((router.query?.query as string) ?? '', page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, query]);
+  }, [page]);
 
   return { items, hasMore };
 };

@@ -52,7 +52,7 @@ const SearchBar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setSearch(router.query.query as string);
+    setSearch((router.query?.query as string) ?? '');
   }, [router.query]);
 
   function startSearch(event: FormEvent<HTMLFormElement>) {
