@@ -12,6 +12,8 @@ import styled from 'styled-components';
 
 type CocktailCardProps = { cocktail: CocktailListType };
 
+const STATIC_URL = process.env['NEXT_PUBLIC_STATIC_URL'];
+
 const Card = styled.div`
   background-color: #fff;
   min-height: 200px;
@@ -65,12 +67,7 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cocktail }) => {
 
   return (
     <Card>
-      <CocktailImage
-        src={'https://dsx97ocm5rfcr.cloudfront.net/main-3.png'}
-        alt={cocktail.name}
-        width={160}
-        height={160}
-      />
+      <CocktailImage src={`${STATIC_URL}/main-3.png`} alt={cocktail.name} width={160} height={160} />
       <Title>{cocktail.name}</Title>
       <Tags>{tags.join(' ')}</Tags>
       <ContentHistoryWrapper>

@@ -7,6 +7,8 @@ interface InfiniteScrollInterface {
   containerRef: MutableRefObject<HTMLDivElement | null>;
 }
 
+const API_URL = process.env['NEXT_PUBLIC_API_URL'];
+
 const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
   const PAGE_LIMIT = 10;
   const [page, setPage] = useState(0);
@@ -54,7 +56,7 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
         setLoading(true);
         const params = { size: PAGE_LIMIT, page, nameOrIngredient: query };
         // ! URL 수정
-        const response = await axios(`http://localhost:8080/app/cocktails`, { params });
+        const response = await axios(`${API_URL}/app/cocktails`, { params });
         const result = response.data.result;
 
         setItems([...items, ...result.content]);
