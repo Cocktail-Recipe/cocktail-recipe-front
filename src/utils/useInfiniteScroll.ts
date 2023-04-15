@@ -5,11 +5,23 @@ import { MutableRefObject, useEffect, useState } from 'react';
 
 interface InfiniteScrollInterface {
   containerRef: MutableRefObject<HTMLDivElement | null>;
+  ready: boolean;
+  filter: CocktailFilterInterface;
+}
+
+interface CocktailFilterInterface {
+  [index: string]: string | number | undefined;
+  sortBy: string | undefined;
+  baseAlcohol: string | undefined;
+  minVolume: number | undefined;
+  maxVolume: number | undefined;
+  cocktailStyle: string | undefined;
+  seasonalStyle: string | undefined;
 }
 
 const API_URL = process.env['NEXT_PUBLIC_API_URL'];
 
-const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
+const useInfiniteScroll = ({ containerRef, ready, filter }: InfiniteScrollInterface) => {
   const PAGE_LIMIT = 10;
   const [page, setPage] = useState(0);
   const [items, setItems] = useState<Array<CocktailListType>>([]);
@@ -26,7 +38,7 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
     };
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && hasMore && !loading) {
+      if (entry.isIntersecting && hasMore && !loading && ready) {
         setPage((p) => p + 1);
       }
     }, options);
@@ -38,23 +50,22 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
       if (containerRef.current) observer.unobserve(containerRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasMore, page, loading]);
+  }, [ready, hasMore, page, loading]);
 
   useEffect(() => {
     setPage(0);
     setItems([]);
     setLoading(false);
     setHasMore(true);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query?.query]);
 
   useEffect(() => {
-    const fetchData = async (query: string, page: number) => {
+    const fetchData = async (query: string, page: number, filterParams: CocktailFilterInterface) => {
       try {
         if (page === 0) return setPage(1);
         setLoading(true);
-        const params = { size: PAGE_LIMIT, page, nameOrIngredient: query };
+        const params = { size: PAGE_LIMIT, page, nameOrIngredient: query, isAsc: false, ...filterParams };
         // ! URL 수정
         const response = await axios(`${API_URL}/app/cocktails`, { params });
         const result = response.data.result;
@@ -68,7 +79,7 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
       }
     };
 
-    if (!loading) fetchData((router.query?.query as string) ?? '', page);
+    if (!loading) fetchData((router.query?.query as string) ?? '', page, filter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 

@@ -47,7 +47,17 @@ const SearchButton = styled(IconButton)`
   }
 `;
 
-const SearchBar = () => {
+interface SearchBarProps {
+  [index: string]: string | number | undefined;
+  sort: string | undefined;
+  minVolume: number | undefined;
+  maxVolume: number | undefined;
+  base: string | undefined;
+  style: string | undefined;
+  season: string | undefined;
+}
+
+const SearchBar: React.FC<SearchBarProps> = (props) => {
   const [search, setSearch] = useState('');
   const router = useRouter();
 
@@ -57,11 +67,19 @@ const SearchBar = () => {
 
   function startSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    let param = '';
     if (search !== '') {
-      router.push(`/cocktail?query=${search}`);
-    } else {
-      router.push('/cocktail');
+      param += `query=${search}&`;
     }
+    Object.keys(props)
+      .filter((key) => props[key] !== undefined)
+      .forEach((key) => (param += `${key}=${props[key]}&`));
+
+    if (param.length > 0) {
+      param = param.substring(0, param.length - 1);
+    }
+    router.push('/cocktail?' + param);
   }
 
   return (
