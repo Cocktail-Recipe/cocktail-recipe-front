@@ -1,4 +1,4 @@
-import { getBaseAlcoholKeys, getBaseAlcoholValue } from '@/interfaces/inquiry/CocktailBaseAlcohol.type';
+import { baseAlcoholKeys, getBaseAlcoholValue } from '@/interfaces/inquiry/CocktailBaseAlcohol.type';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -92,7 +92,7 @@ const Category = () => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {getBaseAlcoholKeys().map((key, index) => {
+        {baseAlcoholKeys.map((key, index) => {
           const { name, src } = getBaseAlcoholValue(key);
           return (
             <ContentWrapper key={index}>

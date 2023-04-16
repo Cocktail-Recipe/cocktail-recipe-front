@@ -21,9 +21,9 @@ export function isCocktailBaseAlcoholType(baseAlcohol: any): baseAlcohol is Cock
   return CocktailBaseAlcoholMap.hasOwnProperty(baseAlcohol);
 }
 
-export function getBaseAlcoholKeys(): CocktailBaseAlcoholType[] {
-  return Object.keys(CocktailBaseAlcoholMap) as CocktailBaseAlcoholType[];
-}
+export const baseAlcoholKeys: CocktailBaseAlcoholType[] = Object.keys(
+  CocktailBaseAlcoholMap,
+) as CocktailBaseAlcoholType[];
 
 export function getBaseAlcoholValue(key: CocktailBaseAlcoholType) {
   return CocktailBaseAlcoholMap[key];

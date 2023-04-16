@@ -11,9 +11,7 @@ export function isCocktailSortType(sort: any): sort is CocktailSortType {
   return CocktailSortMap.hasOwnProperty(sort);
 }
 
-export function getSortKeys(): CocktailSortType[] {
-  return Object.keys(CocktailSortMap) as CocktailSortType[];
-}
+export const sortKeys: CocktailSortType[] = Object.keys(CocktailSortMap) as CocktailSortType[];
 
 export function getSortValue(key: CocktailSortType) {
   return CocktailSortMap[key];

@@ -16,9 +16,7 @@ export function isCocktailSeasonalType(season: any): season is CocktailSeasonalT
   return CocktailSeasonalMap.hasOwnProperty(season);
 }
 
-export function getSeasonalKeys(): CocktailSeasonalType[] {
-  return Object.keys(CocktailSeasonalMap) as CocktailSeasonalType[];
-}
+export const seasonalKeys: CocktailSeasonalType[] = Object.keys(CocktailSeasonalMap) as CocktailSeasonalType[];
 
 export function getSeasonalValue(key: CocktailSeasonalType) {
   return CocktailSeasonalMap[key];

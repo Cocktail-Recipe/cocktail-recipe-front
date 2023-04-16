@@ -1,5 +1,5 @@
 import { CocktailFilterInterface } from '@/\butils/useCocktailFilter';
-import { CocktailSortType, getSortKeys, getSortValue } from '@/interfaces/inquiry/CocktailSort.type';
+import { CocktailSortType, getSortValue, sortKeys } from '@/interfaces/inquiry/CocktailSort.type';
 import { ArrowDropDown, FavoriteBorderOutlined, FavoriteRounded, Tune } from '@material-ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -108,14 +108,14 @@ const SearchFilterBar: React.FC<SearchFilterProps> = ({ filter, setSort }) => {
       </FilterWrapper>
       <Spliter />
       <DropDownWrapper ref={sortRef} style={{ display: sortOpen ? 'block' : 'none' }}>
-        {getSortKeys().map((text, index) => (
+        {sortKeys.map((text, index) => (
           <DropDownContent
             key={text}
             onClick={() => {
               setSortOpen(false);
               setSort(text);
             }}
-            aria-label={index === getSortKeys().length - 1 ? 'last' : undefined}
+            aria-label={index === sortKeys.length - 1 ? 'last' : undefined}
           >
             {getSortValue(text)}
           </DropDownContent>

@@ -18,8 +18,8 @@ export const getCocktailFilter = (query: ParsedUrlQuery): CocktailFilterInterfac
   return {
     sortBy: isCocktailSortType(query?.sort) ? query.sort : 'viewCount',
     baseAlcohol: isCocktailBaseAlcoholType(query?.base) ? query.base : undefined,
-    maxVolume: typeof query?.maxVolumn === 'string' ? Number.parseInt(query.maxVolume as string) : undefined,
-    minVolume: typeof query?.minVolume === 'string' ? Number.parseInt(query.minVolume as string) : undefined,
+    maxVolume: typeof query?.max === 'string' ? Number.parseInt(query.max as string) : undefined,
+    minVolume: typeof query?.min === 'string' ? Number.parseInt(query.min as string) : undefined,
     cocktailStyle: isCocktailStyleType(query?.style) ? query.style : undefined,
     seasonalStyle: isCocktailSeasonalType(query?.season) ? query.season : undefined,
   };

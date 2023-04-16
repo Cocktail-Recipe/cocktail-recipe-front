@@ -47,7 +47,7 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
     setLoading(false);
     setHasMore(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query?.query]);
+  }, [router.query]);
 
   useEffect(() => {
     const fetchData = async (query: string, page: number, filterParams: CocktailFilterInterface) => {

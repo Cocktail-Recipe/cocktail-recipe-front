@@ -18,9 +18,7 @@ export function isCocktailStyleType(style: any): style is CocktailStyleType {
   return CocktailStyleMap.hasOwnProperty(style);
 }
 
-export function getStyleKeys(): CocktailStyleType[] {
-  return Object.keys(CocktailStyleMap) as CocktailStyleType[];
-}
+export const styleKeys: CocktailStyleType[] = Object.keys(CocktailStyleMap) as CocktailStyleType[];
 
 export function getStyleValue(key: CocktailStyleType) {
   return CocktailStyleMap[key];
