@@ -1,3 +1,5 @@
+import { CocktailSeasonalType } from '@/interfaces/inquiry/CocktailSeasonal.type';
+import { CocktailStyleType } from '@/interfaces/inquiry/CocktailStyle.type';
 import { IconButton } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import { useRouter } from 'next/router';
@@ -53,8 +55,8 @@ interface SearchBarProps {
   minVolume: number | undefined;
   maxVolume: number | undefined;
   base: string | undefined;
-  style: string | undefined;
-  season: string | undefined;
+  style: CocktailStyleType | undefined;
+  season: CocktailSeasonalType | undefined;
 }
 
 const SearchBar: React.FC<SearchBarProps> = (props) => {

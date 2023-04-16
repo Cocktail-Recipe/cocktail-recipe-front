@@ -1,11 +1,15 @@
+import { CocktailBaseAlcoholType } from '../inquiry/CocktailBaseAlcohol.type';
+import { CocktailSeasonalType } from '../inquiry/CocktailSeasonal.type';
+import { CocktailStyleType } from '../inquiry/CocktailStyle.type';
+
 export interface CocktailListType {
   cockTailId: number;
   status: CocktailStatus;
   name: string;
-  baseAlcohol: string;
+  baseAlcohol: CocktailBaseAlcoholType;
   volume: number;
-  cocktailStyle: CocktailStyle;
-  seasonalStyle: CocktailSeaonalStyle;
+  cocktailStyle: CocktailStyleType;
+  seasonalStyle: CocktailSeasonalType;
   garnish: string;
   likeCount: number;
   viewCount: number;

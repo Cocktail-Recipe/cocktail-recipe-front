@@ -1,79 +1,63 @@
+import { getCocktailFilter } from '@/\butils/useCocktailFilter';
 import useInfiniteScroll from '@/\butils/useInfiniteScroll';
 import CocktailCard from '@/components/cocktail/CocktailCard';
 import CocktailGrid from '@/components/cocktail/CocktailGrid';
 import SearchBar from '@/components/cocktail/SearchBar';
-import SearchFilter from '@/components/cocktail/SearchFilter';
+import SearchFilterBar from '@/components/cocktail/SearchFilterBar';
 import Footer from '@/components/common/Footer';
 import Navbar from '@/components/common/Navi';
-import { CocktailSortType, isCocktailSortType } from '@/interfaces/inquiry/CocktailInquiry';
+import { CocktailBaseAlcoholType } from '@/interfaces/inquiry/CocktailBaseAlcohol.type';
+import { CocktailSeasonalType } from '@/interfaces/inquiry/CocktailSeasonal.type';
+import { CocktailSortType } from '@/interfaces/inquiry/CocktailSort.type';
+import { CocktailStyleType } from '@/interfaces/inquiry/CocktailStyle.type';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
 const Cocktail = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [sortBy, setSortBy] = useState<CocktailSortType>('viewCount');
-  const [volume, setVolume] = useState<{ min: number | undefined; max: number | undefined }>({
-    min: undefined,
-    max: undefined,
-  });
-  const [cocktailStyle, setCocktailStyle] = useState<string | undefined>();
-  const [baseAlcohol, setBaseAlcohol] = useState<string | undefined>();
-  const [seasonalStyle, setSeasonalStyle] = useState<string | undefined>();
-  const [ready, setReady] = useState(false);
 
-  const { items, hasMore } = useInfiniteScroll({
-    containerRef,
-    ready,
-    filter: {
-      sortBy,
-      baseAlcohol,
-      maxVolume: volume.max,
-      minVolume: volume.min,
-      cocktailStyle,
-      seasonalStyle,
-    },
-  });
+  const [sortBy, setSortBy] = useState<CocktailSortType>('viewCount');
+  const [minVolume, setMinVolume] = useState<number>();
+  const [maxVolume, setMaxVolume] = useState<number>();
+  const [cocktailStyle, setCocktailStyle] = useState<CocktailStyleType | undefined>();
+  const [baseAlcohol, setBaseAlcohol] = useState<CocktailBaseAlcoholType | undefined>();
+  const [seasonalStyle, setSeasonalStyle] = useState<CocktailSeasonalType | undefined>();
 
   const router = useRouter();
-
   useEffect(() => {
-    if (isCocktailSortType(router.query?.sort)) {
-      setSortBy(router.query.sort);
-    }
-
-    if (typeof router.query?.style === 'string') {
-      setCocktailStyle(router.query.style);
-    }
-
-    if (typeof router.query?.minVolumn === 'string') {
-      setVolume((v) => ({ max: v.max, min: Number.parseInt(router.query.minVolumn as string) }));
-    }
-
-    if (typeof router.query?.maxVolumn === 'string') {
-      setVolume((v) => ({ min: v.min, max: Number.parseInt(router.query.maxVolumn as string) }));
-    }
-
-    if (typeof router.query?.base === 'string') {
-      setBaseAlcohol(router.query.base);
-    }
-
-    if (typeof router.query?.season === 'string') {
-      setSeasonalStyle(router.query.season);
-    }
+    const { sortBy, baseAlcohol, cocktailStyle, seasonalStyle, minVolume, maxVolume } = getCocktailFilter(router.query);
+    setSortBy(sortBy);
+    setBaseAlcohol(baseAlcohol);
+    setCocktailStyle(cocktailStyle);
+    setSeasonalStyle(seasonalStyle);
+    setMinVolume(minVolume);
+    setMaxVolume(maxVolume);
   }, [router.query]);
+
+  const { items, hasMore } = useInfiniteScroll({ containerRef });
 
   return (
     <>
       <Navbar user={undefined} />
       <SearchBar
         sort={sortBy}
-        minVolume={volume.min}
-        maxVolume={volume.max}
-        base={baseAlcohol}
+        minVolume={minVolume}
+        maxVolume={maxVolume}
+        base={baseAlcohol?.toString()}
         style={cocktailStyle}
         season={seasonalStyle}
       />
-      <SearchFilter sort={sortBy} setSort={setSortBy} />
+      <SearchFilterBar
+        setSort={setSortBy}
+        filter={{
+          sortBy,
+          minVolume,
+          maxVolume,
+          baseAlcohol,
+          cocktailStyle,
+          seasonalStyle,
+        }}
+      />
       <CocktailGrid>
         {items.map((cocktail, idx) => (
           <CocktailCard key={idx} cocktail={cocktail} />

@@ -1,3 +1,4 @@
+import { getBaseAlcoholKeys, getBaseAlcoholValue } from '@/interfaces/inquiry/CocktailBaseAlcohol.type';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -59,16 +60,9 @@ const CategoryName = styled.div`
   color: #6a6868;
 `;
 
-interface Category {
-  src: string;
-  name: string;
-}
+const STATIC_URL = process.env['NEXT_PUBLIC_STATIC_URL'];
 
-type CategoryProps = {
-  categories: Array<Category>;
-};
-
-const Category: React.FC<CategoryProps> = ({ categories }) => {
+const Category = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [startX, setStartX] = useState<number | null>(null);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -98,12 +92,15 @@ const Category: React.FC<CategoryProps> = ({ categories }) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {categories.map((item, index) => (
-          <ContentWrapper key={index}>
-            <CategoryImage src={item.src} alt={item.name} width={42} height={42} />
-            <CategoryName>{item.name}</CategoryName>
-          </ContentWrapper>
-        ))}
+        {getBaseAlcoholKeys().map((key, index) => {
+          const { name, src } = getBaseAlcoholValue(key);
+          return (
+            <ContentWrapper key={index}>
+              <CategoryImage src={src(STATIC_URL!!)} alt={name} width={42} height={42} />
+              <CategoryName>{name}</CategoryName>
+            </ContentWrapper>
+          );
+        })}
       </ContentContainer>
     </Container>
   );

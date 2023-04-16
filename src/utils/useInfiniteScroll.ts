@@ -2,26 +2,15 @@ import { CocktailListType } from '@/interfaces/cocktail/CocktailObject.interface
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { MutableRefObject, useEffect, useState } from 'react';
+import { CocktailFilterInterface, getCocktailFilter } from './useCocktailFilter';
 
 interface InfiniteScrollInterface {
   containerRef: MutableRefObject<HTMLDivElement | null>;
-  ready: boolean;
-  filter: CocktailFilterInterface;
-}
-
-interface CocktailFilterInterface {
-  [index: string]: string | number | undefined;
-  sortBy: string | undefined;
-  baseAlcohol: string | undefined;
-  minVolume: number | undefined;
-  maxVolume: number | undefined;
-  cocktailStyle: string | undefined;
-  seasonalStyle: string | undefined;
 }
 
 const API_URL = process.env['NEXT_PUBLIC_API_URL'];
 
-const useInfiniteScroll = ({ containerRef, ready, filter }: InfiniteScrollInterface) => {
+const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
   const PAGE_LIMIT = 10;
   const [page, setPage] = useState(0);
   const [items, setItems] = useState<Array<CocktailListType>>([]);
@@ -38,7 +27,7 @@ const useInfiniteScroll = ({ containerRef, ready, filter }: InfiniteScrollInterf
     };
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && hasMore && !loading && ready) {
+      if (entry.isIntersecting && hasMore && !loading) {
         setPage((p) => p + 1);
       }
     }, options);
@@ -50,7 +39,7 @@ const useInfiniteScroll = ({ containerRef, ready, filter }: InfiniteScrollInterf
       if (containerRef.current) observer.unobserve(containerRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, hasMore, page, loading]);
+  }, [hasMore, page, loading]);
 
   useEffect(() => {
     setPage(0);
@@ -79,7 +68,7 @@ const useInfiniteScroll = ({ containerRef, ready, filter }: InfiniteScrollInterf
       }
     };
 
-    if (!loading) fetchData((router.query?.query as string) ?? '', page, filter);
+    if (!loading) fetchData((router.query?.query as string) ?? '', page, getCocktailFilter(router.query));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 

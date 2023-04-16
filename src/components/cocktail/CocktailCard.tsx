@@ -1,10 +1,8 @@
 import { addComma } from '@/\butils/number';
-import {
-  CocktailBaseAlcohol,
-  CocktailListType,
-  CocktailSeaonalStyle,
-  CocktailStyle,
-} from '@/interfaces/cocktail/CocktailObject.interface';
+import { CocktailListType } from '@/interfaces/cocktail/CocktailObject.interface';
+import { getBaseAlcoholValue } from '@/interfaces/inquiry/CocktailBaseAlcohol.type';
+import { getSeasonalValue } from '@/interfaces/inquiry/CocktailSeasonal.type';
+import { getStyleValue } from '@/interfaces/inquiry/CocktailStyle.type';
 import { CommentOutlined, FavoriteBorder, Visibility } from '@material-ui/icons';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -51,16 +49,16 @@ const CocktailCard: React.FC<CocktailCardProps> = ({ cocktail }) => {
 
   useEffect(() => {
     const newTags = [];
-    let index = Object.keys(CocktailBaseAlcohol).indexOf(cocktail.baseAlcohol);
-    if (index !== -1) newTags.push('#' + Object.values(CocktailBaseAlcohol)[index]);
+    let baseAlcohol = getBaseAlcoholValue(cocktail.baseAlcohol);
+    newTags.push('#' + baseAlcohol.name);
 
     newTags.push('#' + cocktail.volume + '도');
 
-    index = Object.keys(CocktailStyle).indexOf(cocktail.cocktailStyle);
-    if (index !== -1) newTags.push('#' + Object.values(CocktailStyle)[index]);
+    let cocktailStyle = getStyleValue(cocktail.cocktailStyle);
+    newTags.push('#' + cocktailStyle.name);
 
-    index = Object.keys(CocktailSeaonalStyle).indexOf(cocktail.seasonalStyle);
-    if (index !== -1) newTags.push('#' + Object.values(CocktailSeaonalStyle)[index]);
+    let seasonalStyle = getSeasonalValue(cocktail.seasonalStyle);
+    newTags.push('#' + seasonalStyle.name);
 
     setTags(newTags);
   }, [cocktail]);

@@ -52,15 +52,6 @@ const popularRecipes = [
   },
 ];
 
-const categories = [
-  { src: `${STATIC_URL}/vodka.png`, name: '보드카' },
-  { src: `${STATIC_URL}/whisky.png`, name: '위스키' },
-  { src: `${STATIC_URL}/gin.png`, name: '진' },
-  { src: `${STATIC_URL}/rum.png`, name: '럼' },
-  { src: `${STATIC_URL}/tequila.png`, name: '데킬라' },
-  { src: `${STATIC_URL}/soju.png`, name: '소주' },
-];
-
 const hotPosts = [
   {
     title: '강남 칵테일 맛집 추천 2023 ver.',
@@ -109,7 +100,7 @@ const Main = () => {
       <Navbar user={undefined} />
       <Slideshow images={images} />
       <PopularRecipe recipes={popularRecipes} />
-      <Category categories={categories} />
+      <Category />
       <MiniBoard posts={hotPosts} title="Hot 게시판" />
       <MiniBoard posts={eventPosts} title="이벤트 / 공지사항" />
       <Footer />
