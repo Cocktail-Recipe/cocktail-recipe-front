@@ -4,3 +4,9 @@ publish = ".next"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+from = "/proxy/*"
+  to = "http://cocktail-recipe-alb-1592042759.ap-northeast-2.elb.amazonaws.com"
+  status = 200
+  force = true

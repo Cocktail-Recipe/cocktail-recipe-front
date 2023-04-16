@@ -5,24 +5,17 @@ import MiniBoard from '@/components/main/MiniBoard';
 import PopularRecipe from '@/components/main/PopularRecipe';
 import Slideshow from '@/components/main/SlideShow';
 
+const STATIC_URL = process.env['NEXT_PUBLIC_STATIC_URL'];
+
 const images = [
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/main-1.png',
-    alt: 'Cocktail 1',
-  },
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/main-2.png',
-    alt: 'Cocktail 2',
-  },
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/main-3.png',
-    alt: 'Cocktail 3',
-  },
+  { src: `${STATIC_URL}/main-1.png`, alt: 'Cocktail 1' },
+  { src: `${STATIC_URL}/main-2.png`, alt: 'Cocktail 2' },
+  { src: `${STATIC_URL}/main-3.png`, alt: 'Cocktail 3' },
 ];
 
 const popularRecipes = [
   {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/popular-1.png',
+    src: `${STATIC_URL}/popular-1.png`,
     alt: 'popular recipe 1',
     name: '모히또',
     tags: ['럼', '19도', '클래식', '여름'],
@@ -31,7 +24,7 @@ const popularRecipes = [
     commentCount: 132,
   },
   {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/popular-2.png',
+    src: `${STATIC_URL}/popular-2.png`,
     alt: 'popular recipe 2',
     name: '칵테일1',
     tags: ['럼', '19도', '클래식', '여름'],
@@ -40,7 +33,7 @@ const popularRecipes = [
     commentCount: 132,
   },
   {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/main-2.png',
+    src: `${STATIC_URL}/main-2.png`,
     alt: 'popular recipe 3',
     name: '칵테일2',
     tags: ['럼', '19도', '클래식', '여름'],
@@ -49,40 +42,13 @@ const popularRecipes = [
     commentCount: 132,
   },
   {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/main-3.png',
+    src: `${STATIC_URL}/main-3.png`,
     alt: 'popular recipe 3',
     name: '칵테일2',
     tags: ['럼', '19도', '클래식', '여름'],
     viewCount: 18432,
     likeCount: 7841,
     commentCount: 132,
-  },
-];
-
-const categories = [
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/vodka.png',
-    name: '보드카',
-  },
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/whisky.png',
-    name: '위스키',
-  },
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/gin.png',
-    name: '진',
-  },
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/rum.png',
-    name: '럼',
-  },
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/tequila.png',
-    name: '데킬라',
-  },
-  {
-    src: 'https://dsx97ocm5rfcr.cloudfront.net/soju.png',
-    name: '소주',
   },
 ];
 
@@ -134,7 +100,7 @@ const Main = () => {
       <Navbar user={undefined} />
       <Slideshow images={images} />
       <PopularRecipe recipes={popularRecipes} />
-      <Category categories={categories} />
+      <Category />
       <MiniBoard posts={hotPosts} title="Hot 게시판" />
       <MiniBoard posts={eventPosts} title="이벤트 / 공지사항" />
       <Footer />
