@@ -63,6 +63,7 @@ const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
         setHasMore(result.numberOfElements === PAGE_LIMIT);
       } catch (error) {
         // ! Error Handling
+        setHasMore(false);
       } finally {
         setLoading(false);
       }
