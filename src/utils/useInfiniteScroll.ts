@@ -8,7 +8,7 @@ interface InfiniteScrollInterface {
   containerRef: MutableRefObject<HTMLDivElement | null>;
 }
 
-const API_URL = window.location.hostname === 'localhost' ? process.env['NEXT_PUBLIC_API_URL'] : '/proxy';
+const API_URL = process.env['NEXT_PUBLIC_API_URL'];
 
 const useInfiniteScroll = ({ containerRef }: InfiniteScrollInterface) => {
   const PAGE_LIMIT = 10;
