@@ -2,14 +2,14 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyled = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
     padding-bottom: 60px;
     background-color: #EFEFEF;
     min-height: 100%;
-  },
+  }
   .scroll {
     &::-webkit-scrollbar {
       display: none;
@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyled />
       <Component {...pageProps} />
       <Head>
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
