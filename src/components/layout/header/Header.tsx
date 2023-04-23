@@ -3,6 +3,7 @@ import { ReactElement, useCallback, useState } from 'react';
 import { Typography } from 'antd';
 import MenuIcon from '@material-ui/icons/Menu';
 import Search from '@material-ui/icons/Search';
+import NavDrawer from '../NavDrawer/NavDrawer';
 
 import { StyledHeader } from './Header.styled';
 
@@ -11,6 +12,10 @@ const Header = (): ReactElement => {
 
   const toggleDrawerOpen = useCallback(() => {
     setIsNavDrawerVisible((isVisible) => !isVisible);
+  }, []);
+
+  const onCloseNavDrawer = useCallback(() => {
+    setIsNavDrawerVisible(false);
   }, []);
 
   return (
@@ -22,6 +27,7 @@ const Header = (): ReactElement => {
           <Search />
         </Layout.Header>
       </StyledHeader>
+      <NavDrawer isDrawerOpen={isNavDrawerVisible} onCloseDrawer={onCloseNavDrawer} />
     </>
   );
 };

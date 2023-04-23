@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledNavLink = styled.button`
-  width: 20%;
   height: 100%;
   background-color: transparent;
   border: none;
@@ -13,5 +12,15 @@ export const StyledNavLink = styled.button`
   .MuiSvgIcon-root {
     width: 20px;
     height: 20px;
+  }
+
+  &.column-aligned-nav-links {
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  &.row-aligned-nav-links {
+    width: 20%;
   }
 `;

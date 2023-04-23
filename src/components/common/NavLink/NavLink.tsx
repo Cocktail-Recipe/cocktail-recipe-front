@@ -8,9 +8,10 @@ interface NavLinkProps {
   url: string;
   name: string;
   icon: typeof LinkIcon;
+  isColumnAligned: boolean;
 }
 
-const NavLink = ({ url, name, icon }: NavLinkProps): ReactElement => {
+const NavLink = ({ url, name, icon, isColumnAligned = false }: NavLinkProps): ReactElement => {
   const router = useRouter();
 
   const onClickNavLink = useCallback(() => {
@@ -18,7 +19,10 @@ const NavLink = ({ url, name, icon }: NavLinkProps): ReactElement => {
   }, [router, url]);
 
   return (
-    <StyledNavLink onClick={onClickNavLink}>
+    <StyledNavLink
+      className={isColumnAligned ? 'column-aligned-nav-links' : 'row-aligned-nav-links'}
+      onClick={onClickNavLink}
+    >
       {icon}
       <div>{name}</div>
     </StyledNavLink>
