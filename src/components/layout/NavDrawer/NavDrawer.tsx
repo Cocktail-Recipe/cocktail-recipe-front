@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Drawer, Typography } from 'antd';
 import { ContactSupportOutlined, SettingsOutlined, ArrowForwardIos } from '@material-ui/icons';
-import NavLink from '@/components/common/NavLink/NavLink';
+import LinkIcon from '@/components/common/LinkIcon/LinkIcon';
 
 import { StyledNavDrawer } from './NavDrawer.styled';
 
@@ -37,8 +37,8 @@ const NavDrawer = ({ isDrawerOpen, onCloseDrawer }: NavDrawerProps): ReactElemen
       >
         <div className="navigation-links-wrapper">
           {/* TODO: 설정, 문의하기 구현  */}
-          <NavLink url="" name="설정" icon={<SettingsOutlined />} isColumnAligned={true} />
-          <NavLink url="" name="문의하기" icon={<ContactSupportOutlined />} isColumnAligned={true} />
+          <LinkIcon url="" name="설정" icon={<SettingsOutlined />} isColumnAligned={true} />
+          <LinkIcon url="" name="문의하기" icon={<ContactSupportOutlined />} isColumnAligned={true} />
         </div>
       </Drawer>
     </StyledNavDrawer>

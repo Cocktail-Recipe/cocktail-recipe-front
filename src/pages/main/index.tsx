@@ -1,20 +1,20 @@
 import { ReactElement } from 'react';
-import { eventPosts, hotPosts, images, popularRecipes } from '@/__mocks__/main';
 import AppLayout from '@/components/layout/AppLayout';
-import Category from '@/components/main/Category';
+import CategoryBoard from '@/components/main/CategoryBoard';
+import PopularRecipes from '@/components/main/PopularRecipes';
+import { popularRecipes, hotPosts, eventPosts, images } from '@/__mocks__/main';
 import MiniBoard from '@/components/main/MiniBoard';
-import PopularRecipe from '@/components/main/PopularRecipe';
-import Slideshow from '@/components/main/SlideShow';
+import CocktailSlides from '@/components/main/CocktailSlides';
 
 const Main = (): ReactElement => {
   return (
     <AppLayout>
       <>
-        <Slideshow images={images} />
-        <PopularRecipe recipes={popularRecipes} />
-        <Category />
-        <MiniBoard posts={hotPosts} title="Hot 게시판" />
-        <MiniBoard posts={eventPosts} title="이벤트 / 공지사항" />
+        <CocktailSlides images={images} />
+        <PopularRecipes recipes={popularRecipes} />
+        <CategoryBoard />
+        <MiniBoard posts={hotPosts} name="Hot 게시판" />
+        <MiniBoard posts={eventPosts} name="이벤트 / 공지사항" />
       </>
     </AppLayout>
   );

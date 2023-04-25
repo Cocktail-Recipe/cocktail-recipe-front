@@ -6,7 +6,7 @@ import {
   PeopleOutline,
 } from '@material-ui/icons';
 import { COCKTAIL_URL, COMMUNITY_URL, MAIN_URL, MESSAGE_URL, MYPAGE_URL } from '@/consts/routeUrl';
-import NavLink from '@/components/common/NavLink/NavLink';
+import LinkIcon from '@/components/common/LinkIcon/LinkIcon';
 
 import { StyledFooter } from './Footer.styled';
 
@@ -23,7 +23,7 @@ const Footer = () => {
   return (
     <StyledFooter>
       {footerList.map(({ url, icon, name }) => {
-        return <NavLink key={name} url={url} icon={icon} name={name} />;
+        return <LinkIcon key={name} url={url} icon={icon} name={name} />;
       })}
     </StyledFooter>
   );
