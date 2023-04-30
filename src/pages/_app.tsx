@@ -1,5 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { RecoilRoot } from 'recoil';
+
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyled = createGlobalStyle`
@@ -21,13 +23,13 @@ const GlobalStyled = createGlobalStyle`
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <RecoilRoot>
       <GlobalStyled />
       <Component {...pageProps} />
       <Head>
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
-    </>
+    </RecoilRoot>
   );
 }
 
