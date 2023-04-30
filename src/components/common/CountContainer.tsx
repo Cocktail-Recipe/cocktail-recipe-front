@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { CommentOutlined, FavoriteBorder, Visibility } from '@material-ui/icons';
 import TextIcon from './TextIcon/TextIcon';
 
@@ -18,4 +18,4 @@ const CounterContainer = ({ likeCount, viewCount, commentCount }: CounterContain
   );
 };
 
-export default CounterContainer;
+export default React.memo(CounterContainer);
