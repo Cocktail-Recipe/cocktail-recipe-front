@@ -1,32 +1,31 @@
 import React, { ReactElement, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import SvgIcon from '@/types/material';
 
-import { StyledLinkIcon } from './LinkIcon.styled';
+import { StyledTextIcon } from './TextIcon.styled';
 
-interface LinkIconProps {
+interface TextIconProps {
   url?: string;
   name: string | number;
-  icon: typeof SvgIcon;
+  icon: any;
   isColumnAligned?: boolean;
 }
 
-const LinkIcon = ({ url, name, icon, isColumnAligned = false }: LinkIconProps): ReactElement => {
+const TextIcon = ({ url, name, icon, isColumnAligned = false }: TextIconProps): ReactElement => {
   const router = useRouter();
 
-  const onClickLinkIcon = useCallback(() => {
+  const onClickTextIcon = useCallback(() => {
     url && router.push(url);
   }, [router, url]);
 
   return (
-    <StyledLinkIcon
+    <StyledTextIcon
       className={isColumnAligned ? 'column-aligned-nav-links' : 'row-aligned-nav-links'}
-      onClick={onClickLinkIcon}
+      onClick={onClickTextIcon}
     >
       {icon}
       <div>{name}</div>
-    </StyledLinkIcon>
+    </StyledTextIcon>
   );
 };
 
-export default React.memo(LinkIcon);
+export default React.memo(TextIcon);

@@ -1,4 +1,4 @@
-import { SlideImage } from '@/interfaces/image';
+import { SlideImage } from '@/models/image.model';
 import { ReactElement } from 'react';
 import Image from 'next/image';
 

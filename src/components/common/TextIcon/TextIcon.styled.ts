@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledLinkIcon = styled.button`
+export const StyledTextIcon = styled.button`
   height: 100%;
   background-color: transparent;
   border: none;
