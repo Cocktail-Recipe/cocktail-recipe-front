@@ -8,7 +8,7 @@ interface NavLinkProps {
   url: string;
   name: string;
   icon: typeof LinkIcon;
-  isColumnAligned: boolean;
+  isColumnAligned?: boolean;
 }
 
 const NavLink = ({ url, name, icon, isColumnAligned = false }: NavLinkProps): ReactElement => {
