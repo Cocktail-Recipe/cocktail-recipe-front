@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { PopularCocktailRecipe } from '@/models/cocktail.model';
 import Image from 'next/image';
 
@@ -7,6 +7,7 @@ import CounterContainer from '../common/CountContainer';
 interface PopularRecipesProps {
   recipes: PopularCocktailRecipe[];
 }
+
 const PopularRecipes = ({ recipes }: PopularRecipesProps): ReactElement => {
   return (
     <>
@@ -27,4 +28,4 @@ const PopularRecipes = ({ recipes }: PopularRecipesProps): ReactElement => {
   );
 };
 
-export default PopularRecipes;
+export default React.memo(PopularRecipes);

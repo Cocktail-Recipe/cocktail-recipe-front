@@ -3,11 +3,11 @@ import React, { ReactElement } from 'react';
 import { Cocktail } from '@/models/cocktail.model';
 import CocktailCard from './CocktailCard';
 
-interface Props {
+interface CockTailListProps {
   cocktails: Cocktail[];
 }
 
-const CockTailList = ({ cocktails }: Props): ReactElement => {
+const CockTailList = ({ cocktails }: CockTailListProps): ReactElement => {
   return (
     <List
       itemLayout="horizontal"

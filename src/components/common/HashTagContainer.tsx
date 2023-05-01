@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react';
 import { cocktailBaseAlcoholLabelMap, cocktailSeasonalLabelMap, cocktailStyleLabelMap } from '@/consts/cocktail';
 import { Cocktail } from '@/models/cocktail.model';
 
-interface HashTagContainer {
+interface HashTagContainerProps {
   cocktail: Cocktail;
 }
 
-const HashTagContainer = ({ cocktail }: HashTagContainer): ReactElement => {
+const HashTagContainer = ({ cocktail }: HashTagContainerProps): ReactElement => {
   const { baseAlcohol, cocktailStyle, seasonalStyle, volume, koreanName } = cocktail;
 
   const baseAlcoholLabel = cocktailBaseAlcoholLabelMap[baseAlcohol];

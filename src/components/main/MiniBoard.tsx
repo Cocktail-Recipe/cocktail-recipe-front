@@ -6,6 +6,7 @@ interface MiniBoardProps {
   posts: Post[];
   name: string;
 }
+
 const MiniBoard = ({ posts, name }: MiniBoardProps): ReactElement => {
   return (
     <div>

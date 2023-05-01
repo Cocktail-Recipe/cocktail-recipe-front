@@ -19,7 +19,7 @@ const TextIcon = ({ url, name, icon, isColumnAligned = false }: TextIconProps): 
 
   return (
     <StyledTextIcon
-      className={isColumnAligned ? 'column-aligned-nav-links' : 'row-aligned-nav-links'}
+      className={`${isColumnAligned ? 'column' : 'row'}` + '-aligned-nav-links'}
       onClick={onClickTextIcon}
     >
       {icon}

@@ -6,6 +6,7 @@ interface CocktailSlidesProps {
   images: SlideImage[];
 }
 
+// TODO: slide 기능 구현
 const CocktailSlides = ({ images }: CocktailSlidesProps): ReactElement => {
   return (
     <div>
