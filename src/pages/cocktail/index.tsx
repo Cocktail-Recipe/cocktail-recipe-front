@@ -21,8 +21,8 @@ const Cocktail = (): ReactElement => {
       <>
         <Text>칵테일</Text>
         <CocktailSearch />
-        <CockTailList cocktails={cocktails} />
         <CocktailSearchFilters />
+        <CockTailList cocktails={cocktails} />
       </>
     </AppLayout>
   );
