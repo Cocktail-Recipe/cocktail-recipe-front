@@ -3,8 +3,8 @@ import { Typography } from 'antd';
 import { useRecoilValue } from 'recoil';
 
 import AppLayout from '@/components/layout/AppLayout';
-import CocktailSearch from '@/components/cocktail/CocktailSearch';
-import CocktailSearchFilters from '@/components/cocktail/CocktailSearchFilters';
+import CocktailSearch from '@/components/cocktail/cocktail-filter/CocktailSearchInput';
+import CocktailSearchContainer from '@/components/cocktail/CocktailSearchFilterContainer';
 import CockTailList from '@/components/cocktail/CocktailList';
 import useCocktailList from '@/hook/useCocktailList';
 import { cocktailListState } from '@/states/cocktail/cocktailList.state';
@@ -21,7 +21,7 @@ const Cocktail = (): ReactElement => {
       <>
         <Text>칵테일</Text>
         <CocktailSearch />
-        <CocktailSearchFilters />
+        <CocktailSearchContainer />
         <CockTailList cocktails={cocktails} />
       </>
     </AppLayout>
