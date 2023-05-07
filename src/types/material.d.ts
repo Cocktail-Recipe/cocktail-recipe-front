@@ -1,2 +1,2 @@
-declare const FooterIcon: typeof SvgIcon;
-export default FooterIcon;
+declare const SvgIcon: typeof SvgIcon;
+export default SvgIcon;
