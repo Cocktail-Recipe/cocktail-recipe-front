@@ -11,9 +11,9 @@ interface CounterContainerProps {
 const CounterContainer = ({ likeCount, viewCount, commentCount }: CounterContainerProps): ReactElement => {
   return (
     <div>
-      <TextIcon url="" name={viewCount} icon={<Visibility />} isColumnAligned={true} />
-      <TextIcon url="" name={likeCount} icon={<FavoriteBorder />} isColumnAligned={true} />
-      <TextIcon url="" name={commentCount} icon={<CommentOutlined />} isColumnAligned={true} />
+      <TextIcon name={viewCount} icon={<Visibility />} isColumnAligned={true} />
+      <TextIcon name={likeCount} icon={<FavoriteBorder />} isColumnAligned={true} />
+      <TextIcon name={commentCount} icon={<CommentOutlined />} isColumnAligned={true} />
     </div>
   );
 };

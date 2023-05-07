@@ -37,8 +37,8 @@ const NavDrawer = ({ isDrawerOpen, onCloseDrawer }: NavDrawerProps): ReactElemen
       >
         <div className="navigation-links-wrapper">
           {/* TODO: 설정, 문의하기 구현  */}
-          <TextIcon url="" name="설정" icon={<SettingsOutlined />} isColumnAligned={true} />
-          <TextIcon url="" name="문의하기" icon={<ContactSupportOutlined />} isColumnAligned={true} />
+          <TextIcon name="설정" icon={<SettingsOutlined />} isColumnAligned={true} />
+          <TextIcon name="문의하기" icon={<ContactSupportOutlined />} isColumnAligned={true} />
         </div>
       </Drawer>
     </StyledNavDrawer>

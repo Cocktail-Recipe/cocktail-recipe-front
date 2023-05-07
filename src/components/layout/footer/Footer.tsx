@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import {
   AccountCircleOutlined,
   HomeOutlined,
@@ -20,10 +21,21 @@ const footerList = [
 ];
 
 const Footer = () => {
+  const router = useRouter();
+
   return (
     <StyledFooter>
       {footerList.map(({ url, icon, name }) => {
-        return <TextIcon key={name} url={url} icon={icon} name={name} />;
+        return (
+          <TextIcon
+            key={name}
+            icon={icon}
+            name={name}
+            onClick={() => {
+              router.push(url);
+            }}
+          />
+        );
       })}
     </StyledFooter>
   );
