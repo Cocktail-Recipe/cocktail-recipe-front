@@ -11,7 +11,7 @@ export interface PopularCocktailRecipe {
 }
 
 export interface Cocktail {
-  cockTailId: number; // TODO: 오타 수정 -> cocktailId
+  cocktailId: number;
   status: CocktailStatus;
   koreanName: string;
   englishName: string;
