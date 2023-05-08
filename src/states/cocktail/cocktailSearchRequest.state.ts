@@ -2,11 +2,11 @@ import { CocktailBaseAlcohol, CocktailFlavor, CocktailSeasonalStyle, CocktailSor
 import { DefaultValue, atom, selector } from 'recoil';
 
 export interface CocktailSearchRequestState {
-  nameOrIngredient: string;
-  size: number;
-  page: number;
-  isAsc: boolean;
-  sortBy: CocktailSort;
+  nameOrIngredient?: string;
+  size?: number;
+  page?: number;
+  isAsc?: boolean;
+  sortBy?: CocktailSort;
   baseAlcohol?: CocktailBaseAlcohol;
   maxVolume?: number;
   minVolume?: number;
@@ -41,19 +41,21 @@ export const cocktailSearchSortByState = atom<CocktailSort>({
   default: CocktailSort.VIEW_COUNT,
 });
 
-export const cocktailSearchBaseAlcoholState = atom<CocktailBaseAlcohol>({
+export const cocktailSearchBaseAlcoholState = atom<CocktailBaseAlcohol | undefined>({
   key: 'cocktailSearchBaseAlcoholState',
   default: undefined,
 });
 
-export const cocktailSearchMaxVolumeState = atom<number | undefined>({
+const MAX_VOLUME = 40;
+export const cocktailSearchMaxVolumeState = atom<number>({
   key: 'cocktailSearchMaxVolumeState',
-  default: undefined,
+  default: MAX_VOLUME,
 });
 
-export const cocktailSearchMinVolumeState = atom<number | undefined>({
+const MIN_VOLUME = 0;
+export const cocktailSearchMinVolumeState = atom<number>({
   key: 'cocktailSearchMinVolumeState',
-  default: undefined,
+  default: MIN_VOLUME,
 });
 
 export const cocktailSearchGarnishState = atom<string | undefined>({
@@ -88,7 +90,7 @@ export const cocktailSearchRequestState = selector<CocktailSearchRequestState>({
       seasonalStyle: get(cocktailSearchSeasonalStyleState),
     };
   },
-  set: ({ set, reset }, newState) => {
+  set: ({ get, set, reset }, newState) => {
     if (newState instanceof DefaultValue) {
       reset(cocktailSearchQueryState);
       reset(cocktailSearchSizeState);
@@ -104,18 +106,30 @@ export const cocktailSearchRequestState = selector<CocktailSearchRequestState>({
 
       return;
     }
-    const { nameOrIngredient, size, page, isAsc, sortBy, maxVolume, minVolume, garnish, cocktailStyle, seasonalStyle } =
-      newState;
-    set(cocktailSearchQueryState, nameOrIngredient || '');
-    set(cocktailSearchSizeState, size);
-    set(cocktailSearchPageState, page);
-    set(cocktailSearchIsAscState, isAsc);
-    set(cocktailSearchSortByState, sortBy || CocktailSort.VIEW_COUNT);
+    const {
+      nameOrIngredient,
+      size,
+      page,
+      isAsc,
+      sortBy,
+      maxVolume,
+      minVolume,
+      garnish,
+      cocktailStyle,
+      seasonalStyle,
+      baseAlcohol,
+    } = newState;
+
+    set(cocktailSearchQueryState, nameOrIngredient || get(cocktailSearchQueryState));
+    set(cocktailSearchSizeState, size || get(cocktailSearchSizeState));
+    set(cocktailSearchPageState, page || get(cocktailSearchPageState));
+    set(cocktailSearchIsAscState, isAsc || get(cocktailSearchIsAscState));
+    set(cocktailSearchSortByState, sortBy || get(cocktailSearchSortByState));
     set(cocktailSearchCocktailStyleState, cocktailStyle);
-    set(cocktailSearchMaxVolumeState, maxVolume);
-    set(cocktailSearchMinVolumeState, minVolume);
-    set(cocktailSearchGarnishState, garnish);
-    set(cocktailSearchCocktailStyleState, cocktailStyle);
+    set(cocktailSearchMaxVolumeState, maxVolume || get(cocktailSearchMaxVolumeState));
+    set(cocktailSearchMinVolumeState, minVolume || get(cocktailSearchMinVolumeState));
+    set(cocktailSearchBaseAlcoholState, baseAlcohol);
+    set(cocktailSearchGarnishState, garnish || get(cocktailSearchGarnishState));
     set(cocktailSearchSeasonalStyleState, seasonalStyle);
   },
 });
