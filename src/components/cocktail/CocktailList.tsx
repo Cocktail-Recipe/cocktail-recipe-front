@@ -1,13 +1,13 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import { useRecoilValue } from 'recoil';
+import { Spin } from 'antd';
 import InfiniteLoader from 'react-window-infinite-loader';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 import useCocktailList from '@/hook/useCocktailList';
 import { cocktailListState } from '@/states/cocktail/cocktailList.state';
 import CocktailCard from './CocktailCard';
-import { Spin } from 'antd';
 
 const CockTailList = (): ReactElement => {
   const cocktails = useRecoilValue(cocktailListState);
