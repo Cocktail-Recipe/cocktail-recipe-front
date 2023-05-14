@@ -4,7 +4,7 @@ import { CocktailListResponse } from '@/models/cocktail.model';
 
 const cocktailAPI = {
   getAllCocktails: (params: CocktailSearchRequestState) => {
-    return axiosInstance.get<CocktailListResponse>('/app/cocktails', { params });
+    return axiosInstance.get<CocktailListResponse>('/app/cocktails/', { params });
   },
 };
 
