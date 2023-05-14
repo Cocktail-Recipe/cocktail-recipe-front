@@ -4,27 +4,35 @@ import { Cocktail } from '@/models/cocktail.model';
 
 import CounterContainer from '../common/CountContainer';
 import HashTagContainer from '../common/HashTagContainer';
+import { StyledCocktailCard } from './CocktailCard.syled';
 
 interface CocktailCardProps {
   cocktail: Cocktail;
+  style: any;
 }
 
-const CocktailCard = ({ cocktail }: CocktailCardProps): ReactElement => {
-  const { thumbnail, englishName, koreanName, viewCount, likeCount, commentCount } = cocktail;
+const CocktailCard = ({ cocktail, style }: CocktailCardProps): ReactElement => {
+  if (!cocktail) return <></>;
 
   return (
-    <List.Item>
-      <List.Item.Meta
-        avatar={<Image src={thumbnail} alt={englishName} width={150} height={150} />}
-        title={koreanName}
-        description={
-          <>
-            <HashTagContainer cocktail={cocktail} />
-            <CounterContainer viewCount={viewCount} likeCount={likeCount} commentCount={commentCount} />
-          </>
-        }
-      />
-    </List.Item>
+    <StyledCocktailCard style={style}>
+      <List.Item>
+        <List.Item.Meta
+          avatar={<Image src={cocktail.thumbnail} alt={cocktail.englishName} width={150} height={150} />}
+          title={cocktail.koreanName}
+          description={
+            <>
+              <HashTagContainer cocktail={cocktail} />
+              <CounterContainer
+                viewCount={cocktail.viewCount}
+                likeCount={cocktail.likeCount}
+                commentCount={cocktail.commentCount}
+              />
+            </>
+          }
+        />
+      </List.Item>
+    </StyledCocktailCard>
   );
 };
 

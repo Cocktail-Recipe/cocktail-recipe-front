@@ -13,7 +13,7 @@ const AppLayout = ({ children }: AppLayoutProps): ReactElement => {
   return (
     <Layout>
       <Header />
-      <Layout.Content style={{ height: '100vh' }}>{children}</Layout.Content>
+      <Layout.Content style={{ height: 'calc(100vh - 120px' }}>{children}</Layout.Content>
       <Footer />
     </Layout>
   );

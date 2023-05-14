@@ -1,28 +1,22 @@
 import { ReactElement } from 'react';
 import { Typography } from 'antd';
-import { useRecoilValue } from 'recoil';
 
 import AppLayout from '@/components/layout/AppLayout';
 import CocktailSearch from '@/components/cocktail/cocktail-filter/CocktailSearchInput';
 import CockTailList from '@/components/cocktail/CocktailList';
-import useCocktailList from '@/hook/useCocktailList';
 import { cocktailListState } from '@/states/cocktail/cocktailList.state';
 import CocktailSearchFilterContainer from '@/components/cocktail/cocktail-filter/CocktailSearchFilterContainer';
 
 const { Text } = Typography;
 
 const Cocktail = (): ReactElement => {
-  useCocktailList();
-
-  const cocktails = useRecoilValue(cocktailListState);
-
   return (
     <AppLayout>
       <>
         <Text>칵테일</Text>
         <CocktailSearch />
         <CocktailSearchFilterContainer />
-        <CockTailList cocktails={cocktails} />
+        <CockTailList />
       </>
     </AppLayout>
   );
