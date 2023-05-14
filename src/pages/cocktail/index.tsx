@@ -4,6 +4,7 @@ import { Typography } from 'antd';
 import AppLayout from '@/components/layout/AppLayout';
 import CocktailSearch from '@/components/cocktail/cocktail-filter/CocktailSearchInput';
 import CockTailList from '@/components/cocktail/CocktailList';
+import { cocktailListState } from '@/states/cocktail/cocktailList.state';
 import CocktailSearchFilterContainer from '@/components/cocktail/cocktail-filter/CocktailSearchFilterContainer';
 
 const { Text } = Typography;

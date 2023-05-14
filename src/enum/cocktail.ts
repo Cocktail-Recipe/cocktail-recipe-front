@@ -6,11 +6,7 @@ export enum CocktailBaseAlcohol {
   TEQUILA = 'TEQUILA',
   SOJU = 'SOJU',
   BRANDY = 'BRANDY',
-
-  // NON_ALCOHOLIC 이랑 혼용되고 있음 -> 명칭 하나로 통일해 줄 수 있는지 요청
-  // 1. 이미지 파일은 NON-ALCOHOL.png
-  // 2. 서버 칵테일 데이터는 { baseAlcohol: NON_ALCOHOLIC }
-  NON_ALCOHOL = 'NON_ALCOHOLIC',
+  NON_ALCOHOL = 'NON_ALCOHOL',
 }
 
 export enum CocktailStatus {
