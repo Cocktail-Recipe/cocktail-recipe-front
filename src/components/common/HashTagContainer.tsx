@@ -9,14 +9,15 @@ interface HashTagContainerProps {
 const HashTagContainer = ({ cocktail }: HashTagContainerProps): ReactElement => {
   const { baseAlcohol, cocktailStyle, seasonalStyle, volume, koreanName } = cocktail;
 
-  const baseAlcoholLabel = cocktailBaseAlcoholLabelMap[baseAlcohol];
-  const cocktailStyleLabel = cocktailStyleLabelMap[cocktailStyle];
-  const seasonalLabel = cocktailSeasonalLabelMap[seasonalStyle];
+  const baseAlcoholLabel = '#' + cocktailBaseAlcoholLabelMap[baseAlcohol];
+  const cocktailStyleLabel = '#' + cocktailStyleLabelMap[cocktailStyle];
+  const seasonalLabel = '#' + cocktailSeasonalLabelMap[seasonalStyle];
+  const volumeLabel = volume ? '#' + volume + '도' : '';
 
   // HashTag 구현
   return (
     <>
-      #{baseAlcoholLabel} #{volume}도 #{koreanName} #{cocktailStyleLabel} #{seasonalLabel}
+      {baseAlcoholLabel} {volumeLabel} #{koreanName} {cocktailStyleLabel} {seasonalLabel}
     </>
   );
 };

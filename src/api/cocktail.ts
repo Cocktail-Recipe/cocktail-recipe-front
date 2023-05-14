@@ -1,6 +1,6 @@
 import { CocktailSearchRequestState } from '@/states/cocktail/cocktailSearchRequest.state';
-import { axiosInstance } from './axios';
 import { CocktailListResponse } from '@/models/cocktail.model';
+import { axiosInstance } from './axios';
 
 const cocktailAPI = {
   getAllCocktails: (params: CocktailSearchRequestState) => {

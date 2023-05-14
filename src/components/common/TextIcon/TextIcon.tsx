@@ -1,27 +1,17 @@
-import React, { ReactElement, useCallback } from 'react';
-import { useRouter } from 'next/router';
+import React, { ReactElement } from 'react';
 
 import { StyledTextIcon } from './TextIcon.styled';
 
 interface TextIconProps {
-  url?: string;
   name: string | number;
   icon: any;
   isColumnAligned?: boolean;
+  onClick?: () => void;
 }
 
-const TextIcon = ({ url, name, icon, isColumnAligned = false }: TextIconProps): ReactElement => {
-  const router = useRouter();
-
-  const onClickTextIcon = useCallback(() => {
-    url && router.push(url);
-  }, [router, url]);
-
+const TextIcon = ({ name, icon, isColumnAligned = false, onClick }: TextIconProps): ReactElement => {
   return (
-    <StyledTextIcon
-      className={`${isColumnAligned ? 'column' : 'row'}` + '-aligned-nav-links'}
-      onClick={onClickTextIcon}
-    >
+    <StyledTextIcon className={`${isColumnAligned ? 'column' : 'row'}` + '-aligned-nav-links'} onClick={onClick}>
       {icon}
       <div>{name}</div>
     </StyledTextIcon>

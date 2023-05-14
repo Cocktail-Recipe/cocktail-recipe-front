@@ -19,14 +19,14 @@ export const cocktailStyleLabelMap: { [key in CocktailFlavor]: string } = {
   [CocktailFlavor.SOUR]: '사워',
 };
 
-export const cocktailSeasonalLabelMap = {
+export const cocktailSeasonalLabelMap: { [key in CocktailSeasonalStyle]: string } = {
   [CocktailSeasonalStyle.SPRING]: '봄',
   [CocktailSeasonalStyle.SUMMER]: '여름',
   [CocktailSeasonalStyle.FALL]: '가을',
   [CocktailSeasonalStyle.WINTER]: '겨울',
 };
 
-export const cocktailSortLabelMap = {
+export const cocktailSortLabelMap: { [key in CocktailSort]: string } = {
   [CocktailSort.VIEW_COUNT]: '조회순',
   [CocktailSort.LIKE_COUNT]: '찜순',
   [CocktailSort.COMMENT_COUNT]: '댓글순',

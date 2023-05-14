@@ -1,12 +1,12 @@
 export enum CocktailBaseAlcohol {
   RUM = 'RUM',
   VODKA = 'VODKA',
-  WHISKEY = 'WHISKEY', // static image 이름 오타 whisky로 되어 있음
+  WHISKEY = 'WHISKEY',
   GIN = 'GIN',
   TEQUILA = 'TEQUILA',
   SOJU = 'SOJU',
   BRANDY = 'BRANDY',
-  NON_ALCOHOL = 'NON-ALCOHOL',
+  NON_ALCOHOL = 'NON_ALCOHOL',
 }
 
 export enum CocktailStatus {

@@ -1,11 +1,11 @@
 import { Dropdown, MenuProps, Space } from 'antd';
 import { ReactElement, useCallback, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import { MenuClickEventHandler } from 'rc-menu/lib/interface';
 import { cocktailSearchSortByState } from '@/states/cocktail/cocktailSearchRequest.state';
 import { DownOutlined } from '@ant-design/icons';
 import { cocktailSortLabelMap } from '@/consts/cocktail';
 import { CocktailSort } from '@/enum/cocktail';
-import { MenuClickEventHandler } from 'rc-menu/lib/interface';
 
 const SORT_BY_DROPDOWN_ITEMS: MenuProps['items'] = [
   {
