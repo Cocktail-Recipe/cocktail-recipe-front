@@ -1,7 +1,6 @@
 import { Ingredient } from '@/models/ingredient.model';
-import { ReactElement } from 'react';
-import { Avatar, Card, List, Typography } from 'antd';
-import CocktailIngredient from './CocktailIngredientList';
+import React, { ReactElement } from 'react';
+import { Card } from 'antd';
 import CocktailIngredientList from './CocktailIngredientList';
 import CocktailIngredientUnitSelector from './CocktailIngredientUnitSelector';
 
@@ -17,4 +16,4 @@ const CocktailIngredientContainer = ({ ingredients }: CocktailIngredientContaine
   );
 };
 
-export default CocktailIngredientContainer;
+export default React.memo(CocktailIngredientContainer);

@@ -1,5 +1,5 @@
 import { Card } from 'antd';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 interface CocktailRecipeProps {
   recipe: string | null;
@@ -13,4 +13,4 @@ const CocktailRecipe = ({ recipe }: CocktailRecipeProps): ReactElement => {
   );
 };
 
-export default CocktailRecipe;
+export default React.memo(CocktailRecipe);

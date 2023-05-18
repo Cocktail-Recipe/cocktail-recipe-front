@@ -1,5 +1,5 @@
 import { Ingredient } from '@/models/ingredient.model';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { Avatar, List } from 'antd';
 
 interface CocktailIngredientListProps {
@@ -26,4 +26,4 @@ const CocktailIngredientList = ({ ingredients }: CocktailIngredientListProps): R
   );
 };
 
-export default CocktailIngredientList;
+export default React.memo(CocktailIngredientList);
