@@ -1,4 +1,5 @@
 import { CocktailBaseAlcohol, CocktailFlavor, CocktailSeasonalStyle, CocktailStatus } from '@/enum/cocktail';
+import { Ingredient } from './ingredient.model';
 
 export interface PopularCocktailRecipe {
   src: string;
@@ -24,6 +25,9 @@ export interface Cocktail {
   viewCount: number;
   commentCount: number;
   thumbnail: string;
+  introduce: null | string;
+  recipe: null | string;
+  ingredientList: Ingredient[];
 }
 
 export interface CocktailListResponse {
@@ -58,4 +62,11 @@ export interface CocktailListResponse {
     size: number;
     empty: boolean;
   };
+}
+
+export interface CocktailResponse {
+  isSuccess: boolean;
+  code: number;
+  message: string;
+  result: Cocktail;
 }
