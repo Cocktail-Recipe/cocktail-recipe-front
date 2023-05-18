@@ -2,14 +2,14 @@ import { ReactElement, useCallback, useState } from 'react';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import TextIcon from '@/components/common/TextIcon/TextIcon';
 
-const CocktailLikeFilter = (): ReactElement => {
+const CocktailLike = (): ReactElement => {
   const [like, setLike] = useState(false);
 
-  const onToggleCocktailLikeFilter = useCallback(() => {
+  const onToggleCocktailLike = useCallback(() => {
     setLike((prev) => !prev);
   }, []);
 
-  return <TextIcon name="찜" icon={like ? <HeartFilled /> : <HeartOutlined />} onClick={onToggleCocktailLikeFilter} />;
+  return <TextIcon name="찜" icon={like ? <HeartFilled /> : <HeartOutlined />} onClick={onToggleCocktailLike} />;
 };
 
-export default CocktailLikeFilter;
+export default CocktailLike;

@@ -3,7 +3,7 @@ import { ReactElement, useCallback, useState } from 'react';
 import { Typography } from 'antd';
 import MenuIcon from '@material-ui/icons/Menu';
 import Search from '@material-ui/icons/Search';
-import NavDrawer from '../NavDrawer/NavDrawer';
+import NavDrawer from '../nav-drawer/NavDrawer';
 
 import { StyledHeader } from './Header.styled';
 
