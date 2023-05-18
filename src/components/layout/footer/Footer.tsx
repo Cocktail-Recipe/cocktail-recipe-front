@@ -31,8 +31,8 @@ const Footer = () => {
             key={name}
             icon={icon}
             name={name}
-            onClick={() => {
-              router.push(url);
+            onClick={async () => {
+              await router.push(url);
             }}
           />
         );
