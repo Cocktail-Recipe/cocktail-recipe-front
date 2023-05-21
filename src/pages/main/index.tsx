@@ -5,10 +5,11 @@ import PopularRecipes from '@/components/main/PopularRecipes';
 import { popularRecipes, hotPosts, images } from '@/__mocks__/main';
 import MiniBoard from '@/components/main/MiniBoard';
 import CocktailSlides from '@/components/main/CocktailSlides';
+import Header from '@/components/layout/header/Header';
 
-const Main = (): ReactElement => {
+const MainPage = (): ReactElement => {
   return (
-    <AppLayout>
+    <AppLayout header={<Header />}>
       <>
         <CocktailSlides images={images} />
         <PopularRecipes recipes={popularRecipes} />
@@ -19,4 +20,4 @@ const Main = (): ReactElement => {
   );
 };
 
-export default Main;
+export default MainPage;

@@ -2,16 +2,16 @@ import { ReactElement } from 'react';
 import { Typography } from 'antd';
 
 import AppLayout from '@/components/layout/AppLayout';
-import CocktailSearch from '@/components/cocktail/cocktail-filter/CocktailSearchInput';
-import CockTailList from '@/components/cocktail/CocktailList';
-import { cocktailListState } from '@/states/cocktail/cocktailList.state';
-import CocktailSearchFilterContainer from '@/components/cocktail/cocktail-filter/CocktailSearchFilterContainer';
+import CocktailSearch from '@/components/cocktail-filter/CocktailSearchInput';
+import CockTailList from '@/components/cocktail-list/CocktailList';
+import CocktailSearchFilterContainer from '@/components/cocktail-filter/CocktailSearchFilterContainer';
+import Header from '@/components/layout/header/Header';
 
 const { Text } = Typography;
 
-const Cocktail = (): ReactElement => {
+const CocktailPage = (): ReactElement => {
   return (
-    <AppLayout>
+    <AppLayout header={<Header />}>
       <>
         <Text>칵테일</Text>
         <CocktailSearch />
@@ -22,4 +22,4 @@ const Cocktail = (): ReactElement => {
   );
 };
 
-export default Cocktail;
+export default CocktailPage;

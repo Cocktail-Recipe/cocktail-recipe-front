@@ -7,13 +7,16 @@ import Header from './header/Header';
 
 interface AppLayoutProps {
   children: JSX.Element;
+  header: JSX.Element;
+  style?: any;
 }
 
-const AppLayout = ({ children }: AppLayoutProps): ReactElement => {
+const AppLayout = ({ children, header, style }: AppLayoutProps): ReactElement => {
   return (
     <Layout>
-      <Header />
-      <Layout.Content style={{ height: 'calc(100vh - 130px' }}>{children}</Layout.Content>
+      {header}
+      {/* TODO: 컴포넌트 style들 마크업 수정시 변경 */}
+      <Layout.Content style={style || { height: 'calc(100vh - 130px' }}>{children}</Layout.Content>
       <Footer />
     </Layout>
   );

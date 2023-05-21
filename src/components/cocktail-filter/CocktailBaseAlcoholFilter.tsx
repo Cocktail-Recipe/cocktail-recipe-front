@@ -1,7 +1,7 @@
 import { Space, Typography } from 'antd';
 import React, { ReactElement } from 'react';
 import { CocktailBaseAlcohol } from '@/enum/cocktail';
-import BaseAlcoholList from '../../common/BaseAlcoholList/BaseAlcoholList';
+import BaseAlcoholList from '../common/BaseAlcoholList/BaseAlcoholList';
 
 interface CocktailBaseAlcoholFilterProps {
   onClickBaseAlcohol: (value: CocktailBaseAlcohol) => void;

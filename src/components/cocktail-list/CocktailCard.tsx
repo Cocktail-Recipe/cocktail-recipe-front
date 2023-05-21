@@ -8,15 +8,16 @@ import { StyledCocktailCard } from './CocktailCard.syled';
 
 interface CocktailCardProps {
   cocktail: Cocktail;
+  onClick?: () => void;
   style: any;
 }
 
-const CocktailCard = ({ cocktail, style }: CocktailCardProps): ReactElement => {
+const CocktailCard = ({ cocktail, onClick, style }: CocktailCardProps): ReactElement => {
   if (!cocktail) return <></>;
 
   return (
     <StyledCocktailCard style={style}>
-      <List.Item>
+      <List.Item onClick={onClick}>
         <List.Item.Meta
           avatar={<Image src={cocktail.thumbnail} alt={cocktail.englishName} width={150} height={150} />}
           title={cocktail.koreanName}

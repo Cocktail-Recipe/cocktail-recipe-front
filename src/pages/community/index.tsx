@@ -1,12 +1,13 @@
 import { ReactElement } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
+import Header from '@/components/layout/header/Header';
 
-const Community = (): ReactElement => {
+const CommunityPage = (): ReactElement => {
   return (
-    <AppLayout>
+    <AppLayout header={<Header />}>
       <>커뮤니티</>
     </AppLayout>
   );
 };
 
-export default Community;
+export default CommunityPage;

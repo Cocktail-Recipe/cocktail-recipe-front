@@ -10,7 +10,7 @@ interface CounterContainerProps {
 
 const CounterContainer = ({ likeCount, viewCount, commentCount }: CounterContainerProps): ReactElement => {
   return (
-    <div>
+    <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
       <TextIcon name={viewCount} icon={<Visibility />} isColumnAligned={true} />
       <TextIcon name={likeCount} icon={<FavoriteBorder />} isColumnAligned={true} />
       <TextIcon name={commentCount} icon={<CommentOutlined />} isColumnAligned={true} />
