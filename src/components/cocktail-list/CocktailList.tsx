@@ -5,13 +5,13 @@ import { Spin } from 'antd';
 import { useRouter } from 'next/router';
 import InfiniteLoader from 'react-window-infinite-loader';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import { PlusCircleOutlined } from '@ant-design/icons';
 
 import useCocktailList from '@/hook/useCocktailList';
 import { cocktailListState } from '@/states/cocktail/cocktailList.state';
 import { selectedCocktailState } from '@/states/cocktail/cocktail.state';
 import { Cocktail } from '@/models/cocktail.model';
 import { COCKTAIL_URL } from '@/consts/routeUrl';
-
 import CocktailCard from './CocktailCard';
 
 const CockTailList = (): ReactElement => {
@@ -50,6 +50,10 @@ const CockTailList = (): ReactElement => {
     [cocktails.length, hasNextPage],
   );
 
+  const onClickCreateCocktailRecipe = useCallback(async () => {
+    await router.push(`${COCKTAIL_URL}/editor`);
+  }, [router]);
+
   return (
     <AutoSizer>
       {({ height, width }) => (
@@ -58,16 +62,30 @@ const CockTailList = (): ReactElement => {
             isLoading ? (
               <Spin />
             ) : (
-              <List
-                height={height as number}
-                width={width as number}
-                itemSize={170}
-                onItemsRendered={onItemsRendered}
-                ref={ref}
-                itemCount={itemCount}
-              >
-                {CocktailItem}
-              </List>
+              <>
+                <List
+                  height={height as number}
+                  width={width as number}
+                  itemSize={170}
+                  onItemsRendered={onItemsRendered}
+                  ref={ref}
+                  itemCount={itemCount}
+                >
+                  {CocktailItem}
+                </List>
+                <PlusCircleOutlined
+                  style={{
+                    position: 'fixed',
+                    fontSize: '30px',
+                    bottom: '80px',
+                    right: '20px',
+                    color: 'green',
+                    borderRadius: '100%',
+                    backgroundColor: 'white',
+                  }}
+                  onClick={onClickCreateCocktailRecipe}
+                />
+              </>
             )
           }
         </InfiniteLoader>
