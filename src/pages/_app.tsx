@@ -1,8 +1,10 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, RecoilEnv } from 'recoil';
 
 import { createGlobalStyle } from 'styled-components';
+
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 const GlobalStyled = createGlobalStyle`
   body {
