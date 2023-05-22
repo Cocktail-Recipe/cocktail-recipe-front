@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import { Space } from 'antd';
+import { useResetRecoilState } from 'recoil';
 
 import AppLayout from '@/components/layout/AppLayout';
 import HeaderWithLinks from '@/components/layout/header/HeaderWithLinks';
@@ -8,8 +9,17 @@ import CocktailInfo from '@/components/cocktail-editor/CocktailInfo';
 import CocktailCategory from '@/components/cocktail-editor/CocktailCategory';
 import CocktailImage from '@/components/cocktail-editor/CocktailImage';
 import CocktailName from '@/components/cocktail-editor/CocktailName';
+import { cocktailEditInputState } from '@/states/cocktail/cocktailCreate.state';
 
 const CocktailEditorPage = (): ReactElement => {
+  const resetCocktailCreateState = useResetRecoilState(cocktailEditInputState);
+
+  useEffect(() => {
+    return () => {
+      resetCocktailCreateState();
+    };
+  }, [resetCocktailCreateState]);
+
   return (
     <AppLayout
       style={{ padding: '20px', height: 'calc(100vh - 130px)' }}
