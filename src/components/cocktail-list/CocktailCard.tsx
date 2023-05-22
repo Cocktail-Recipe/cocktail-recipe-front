@@ -1,9 +1,9 @@
 import { List, Image } from 'antd';
 import React, { ReactElement } from 'react';
 import { Cocktail } from '@/models/cocktail.model';
+import { getCocktailHashTags } from '@/utils/cocktail';
 
 import CounterContainer from '../common/CountContainer';
-import HashTagContainer from '../common/HashTagContainer';
 import { StyledCocktailCard } from './CocktailCard.syled';
 
 interface CocktailCardProps {
@@ -15,20 +15,34 @@ interface CocktailCardProps {
 const CocktailCard = ({ cocktail, onClick, style }: CocktailCardProps): ReactElement => {
   if (!cocktail) return <></>;
 
+  const {
+    thumbnail,
+    englishName,
+    koreanName,
+    baseAlcohol,
+    cocktailStyle,
+    seasonalStyle,
+    volume,
+    likeCount,
+    viewCount,
+    commentCount,
+  } = cocktail;
+
   return (
     <StyledCocktailCard style={style}>
       <List.Item onClick={onClick}>
         <List.Item.Meta
-          avatar={<Image src={cocktail.thumbnail} alt={cocktail.englishName} width={150} height={150} />}
-          title={cocktail.koreanName}
+          avatar={<Image src={thumbnail} alt={englishName} width={150} height={150} />}
+          title={koreanName}
           description={
             <>
-              <HashTagContainer cocktail={cocktail} />
-              <CounterContainer
-                viewCount={cocktail.viewCount}
-                likeCount={cocktail.likeCount}
-                commentCount={cocktail.commentCount}
-              />
+              {getCocktailHashTags({
+                baseAlcohol,
+                cocktailStyle,
+                seasonalStyle,
+                volume,
+              })}
+              <CounterContainer viewCount={viewCount} likeCount={likeCount} commentCount={commentCount} />
             </>
           }
         />

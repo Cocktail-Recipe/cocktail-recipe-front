@@ -4,7 +4,7 @@ import CocktailInfo from '@/components/cocktail-info/CocktailInfo';
 import CocktailIngredientContainer from '@/components/cocktail-ingredient/CocktailIngredientContainer';
 import CocktailRecipe from '@/components/cocktail-recipe/CocktailRecipe';
 import AppLayout from '@/components/layout/AppLayout';
-import HeaderWithBacklink from '@/components/layout/header/HeaderWithBacklink';
+import HeaderWithLinks from '@/components/layout/header/HeaderWithLinks';
 import { Cocktail } from '@/models/cocktail.model';
 
 interface CocktailDetailPageProps {
@@ -15,7 +15,7 @@ const CocktailDetailPage = ({ cocktail }: CocktailDetailPageProps): ReactElement
   if (!cocktail) return <></>;
 
   return (
-    <AppLayout header={<HeaderWithBacklink />} style={{ height: '100%' }}>
+    <AppLayout header={<HeaderWithLinks />} style={{ height: '100%' }}>
       <>
         <CocktailInfo cocktail={cocktail} />
         <CocktailIngredientContainer ingredients={cocktail.ingredientList} />

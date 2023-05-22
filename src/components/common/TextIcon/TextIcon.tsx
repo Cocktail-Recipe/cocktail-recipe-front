@@ -4,7 +4,7 @@ import { StyledTextIcon } from './TextIcon.styled';
 
 interface TextIconProps {
   name: string | number;
-  icon: any;
+  icon?: any;
   isColumnAligned?: boolean;
   onClick?: () => void;
 }
