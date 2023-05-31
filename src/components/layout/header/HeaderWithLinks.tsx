@@ -1,11 +1,17 @@
 import { Layout } from 'antd';
-import { ReactElement, useCallback } from 'react';
-import { StyledHeader } from './Header.styled';
+import React, { ReactElement, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import { StyledHeader } from './Header.styled';
 
-const HeaderWithBacklink = (): ReactElement => {
+interface HeaderWithlinksProps {
+  title?: string;
+  nextLink?: JSX.Element;
+}
+
+const HeaderWithlinks = ({ title, nextLink }: HeaderWithlinksProps): ReactElement => {
   const router = useRouter();
+
   const onClickBacklink = useCallback(() => {
     router.back();
   }, [router]);
@@ -14,9 +20,11 @@ const HeaderWithBacklink = (): ReactElement => {
     <StyledHeader>
       <Layout.Header>
         <ArrowLeftOutlined onClick={onClickBacklink} />
+        {title}
+        {nextLink}
       </Layout.Header>
     </StyledHeader>
   );
 };
 
-export default HeaderWithBacklink;
+export default React.memo(HeaderWithlinks);
