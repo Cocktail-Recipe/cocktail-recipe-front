@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import { HomeOutlined, LocalBarOutlined } from '@material-ui/icons';
 import { HddOutlined, PicLeftOutlined, UserOutlined } from '@ant-design/icons';
 import { COCKTAIL_URL, COMMUNITY_URL, MAIN_URL, MESSAGE_URL, MYPAGE_URL } from '@/consts/routeUrl';
@@ -17,6 +18,7 @@ const footerList = [
 
 const Footer = () => {
   const router = useRouter();
+  const isCurrentClickedMenu = useCallback((url: string) => router.pathname === url, [router.pathname]);
 
   return (
     <StyledFooter>
@@ -24,6 +26,7 @@ const Footer = () => {
         return (
           <TextIcon
             key={name}
+            className={isCurrentClickedMenu(url) ? 'clicked-menu' : undefined}
             icon={icon}
             name={name}
             onClick={async () => {

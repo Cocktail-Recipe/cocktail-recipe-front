@@ -13,10 +13,6 @@ export const StyledTextIcon = styled.button`
   margin-top: 10px;
   padding: 0px;
 
-  :focus {
-    color: #fff;
-  }
-
   &.column-aligned-nav-links {
     display: flex;
     font-size: 10px;

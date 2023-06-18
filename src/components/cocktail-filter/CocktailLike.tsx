@@ -16,9 +16,9 @@ const CocktailLike = ({ containsNameLabel = true }: CocktailLikeProps): ReactEle
 
   return (
     <StyledCocktailLike>
-      <Button onClick={onToggleCocktailLike}>
+      <Button onClick={onToggleCocktailLike} style={{ backgroundColor: like ? '#ff4e16' : 'transparent' }}>
         <div>{containsNameLabel ? '찜' : ''}</div>
-        {like ? <HeartFilled style={{ color: 'red' }} /> : <HeartOutlined />}
+        {like ? <HeartFilled /> : <HeartOutlined />}
       </Button>
     </StyledCocktailLike>
   );

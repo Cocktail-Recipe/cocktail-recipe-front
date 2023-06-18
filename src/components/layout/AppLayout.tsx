@@ -8,17 +8,17 @@ import { StyledAppLayout } from './AppLayout.styled';
 interface AppLayoutProps {
   children: JSX.Element;
   header: JSX.Element;
-  style?: any;
+  className?: string;
+  hasFooter?: boolean;
 }
 
-const AppLayout = ({ children, header, style }: AppLayoutProps): ReactElement => {
+const AppLayout = ({ children, header, className, hasFooter = true }: AppLayoutProps): ReactElement => {
   return (
     <StyledAppLayout>
-      <Layout>
+      <Layout className={className}>
         {header}
-        {/* TODO: 컴포넌트 style들 마크업 수정시 변경 */}
-        <Layout.Content style={style || { height: 'calc(100vh - 170px)' }}>{children}</Layout.Content>
-        <Footer />
+        <Layout.Content>{children}</Layout.Content>
+        {hasFooter && <Footer />}
       </Layout>
     </StyledAppLayout>
   );

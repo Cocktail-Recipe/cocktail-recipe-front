@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledCocktailLike = styled.div`
-  .ant-btn {
+  .ant-btn,
+  .ant-btn:hover,
+  .ant-btn:focus {
     width: 55px;
     height: 32px;
     flex-grow: 0;

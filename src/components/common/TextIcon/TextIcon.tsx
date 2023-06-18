@@ -5,13 +5,17 @@ import { StyledTextIcon } from './TextIcon.styled';
 interface TextIconProps {
   name: string | number;
   icon?: any;
+  className?: string;
   isColumnAligned?: boolean;
   onClick?: () => void;
 }
 
-const TextIcon = ({ name, icon, isColumnAligned = false, onClick }: TextIconProps): ReactElement => {
+const TextIcon = ({ name, icon, className, isColumnAligned = false, onClick }: TextIconProps): ReactElement => {
   return (
-    <StyledTextIcon className={`${isColumnAligned ? 'column' : 'row'}` + '-aligned-nav-links'} onClick={onClick}>
+    <StyledTextIcon
+      className={`${isColumnAligned ? 'column' : 'row'}` + '-aligned-nav-links' + ` ${className}`}
+      onClick={onClick}
+    >
       {icon}
       <div>{name}</div>
     </StyledTextIcon>

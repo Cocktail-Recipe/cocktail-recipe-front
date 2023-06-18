@@ -7,8 +7,6 @@ import AppLayout from '@/components/layout/AppLayout';
 import HeaderWithLinks from '@/components/layout/header/HeaderWithLinks';
 import { Cocktail } from '@/models/cocktail.model';
 
-import { StyledCocktailDetailPage } from './CocktailDetailPage.styled';
-
 interface CocktailDetailPageProps {
   cocktail: Cocktail | null;
 }
@@ -17,7 +15,7 @@ const CocktailDetailPage = ({ cocktail }: CocktailDetailPageProps): ReactElement
   if (!cocktail) return <></>;
 
   return (
-    <AppLayout header={<HeaderWithLinks />} style={StyledCocktailDetailPage}>
+    <AppLayout header={<HeaderWithLinks />} className="cocktail-detail-page" hasFooter={false}>
       <>
         <CocktailInfo cocktail={cocktail} />
         <CocktailIngredientContainer ingredients={cocktail.ingredientList} />

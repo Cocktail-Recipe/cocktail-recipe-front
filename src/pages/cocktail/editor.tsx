@@ -22,7 +22,7 @@ const CocktailEditorPage = (): ReactElement => {
 
   return (
     <AppLayout
-      style={{ padding: '20px', height: 'calc(100vh - 130px)' }}
+      className="cocktail-editor-page"
       header={<HeaderWithLinks title="나만의 칵테일 공유하기" nextLink={<TextIcon name="다음" />} />}
     >
       <Space direction="vertical" size="large">
