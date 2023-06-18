@@ -10,7 +10,6 @@ export interface CocktailSearchRequestState {
   baseAlcohol?: CocktailBaseAlcohol;
   maxVolume?: number;
   minVolume?: number;
-  garnish?: string;
   cocktailStyle?: CocktailFlavor;
   seasonalStyle?: CocktailSeasonalStyle;
 }
@@ -85,7 +84,6 @@ export const cocktailSearchRequestState = selector<CocktailSearchRequestState>({
       baseAlcohol: get(cocktailSearchBaseAlcoholState),
       maxVolume: get(cocktailSearchMaxVolumeState),
       minVolume: get(cocktailSearchMinVolumeState),
-      garnish: get(cocktailSearchGarnishState),
       cocktailStyle: get(cocktailSearchCocktailStyleState),
       seasonalStyle: get(cocktailSearchSeasonalStyleState),
     };
@@ -114,7 +112,6 @@ export const cocktailSearchRequestState = selector<CocktailSearchRequestState>({
       sortBy,
       maxVolume,
       minVolume,
-      garnish,
       cocktailStyle,
       seasonalStyle,
       baseAlcohol,
@@ -129,7 +126,6 @@ export const cocktailSearchRequestState = selector<CocktailSearchRequestState>({
     set(cocktailSearchMaxVolumeState, maxVolume || get(cocktailSearchMaxVolumeState));
     set(cocktailSearchMinVolumeState, minVolume || get(cocktailSearchMinVolumeState));
     set(cocktailSearchBaseAlcoholState, baseAlcohol);
-    set(cocktailSearchGarnishState, garnish || get(cocktailSearchGarnishState));
     set(cocktailSearchSeasonalStyleState, seasonalStyle);
   },
 });

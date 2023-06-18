@@ -20,7 +20,6 @@ export interface Cocktail {
   volume: number;
   cocktailStyle: CocktailFlavor;
   seasonalStyle: CocktailSeasonalStyle;
-  garnish: string;
   likeCount: number;
   viewCount: number;
   commentCount: number;
