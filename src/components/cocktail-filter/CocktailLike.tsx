@@ -1,6 +1,7 @@
 import { ReactElement, useCallback, useState } from 'react';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
-import TextIcon from '@/components/common/TextIcon/TextIcon';
+import { StyledCocktailLike } from './CocktailLike.styled';
+import { Button } from 'antd';
 
 interface CocktailLikeProps {
   containsNameLabel?: boolean;
@@ -14,11 +15,12 @@ const CocktailLike = ({ containsNameLabel = true }: CocktailLikeProps): ReactEle
   }, []);
 
   return (
-    <TextIcon
-      name={containsNameLabel ? '찜' : ''}
-      icon={like ? <HeartFilled /> : <HeartOutlined />}
-      onClick={onToggleCocktailLike}
-    />
+    <StyledCocktailLike>
+      <Button onClick={onToggleCocktailLike}>
+        <div>{containsNameLabel ? '찜' : ''}</div>
+        {like ? <HeartFilled style={{ color: 'red' }} /> : <HeartOutlined />}
+      </Button>
+    </StyledCocktailLike>
   );
 };
 

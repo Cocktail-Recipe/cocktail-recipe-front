@@ -1,11 +1,6 @@
 import { useRouter } from 'next/router';
-import {
-  AccountCircleOutlined,
-  HomeOutlined,
-  LocalBarOutlined,
-  MessageOutlined,
-  PeopleOutline,
-} from '@material-ui/icons';
+import { HomeOutlined, LocalBarOutlined } from '@material-ui/icons';
+import { HddOutlined, PicLeftOutlined, UserOutlined } from '@ant-design/icons';
 import { COCKTAIL_URL, COMMUNITY_URL, MAIN_URL, MESSAGE_URL, MYPAGE_URL } from '@/consts/routeUrl';
 import TextIcon from '@/components/common/TextIcon/TextIcon';
 
@@ -15,9 +10,9 @@ import { StyledFooter } from './Footer.styled';
 const footerList = [
   { url: MAIN_URL, icon: <HomeOutlined />, name: '홈' },
   { url: COCKTAIL_URL, icon: <LocalBarOutlined />, name: '칵테일' },
-  { url: COMMUNITY_URL, icon: <PeopleOutline />, name: '커뮤니티' },
-  { url: MESSAGE_URL, icon: <MessageOutlined />, name: '메시지' },
-  { url: MYPAGE_URL, icon: <AccountCircleOutlined />, name: '마이페이지' },
+  { url: COMMUNITY_URL, icon: <PicLeftOutlined />, name: '커뮤니티' },
+  { url: MESSAGE_URL, icon: <HddOutlined />, name: '나만의와인바' },
+  { url: MYPAGE_URL, icon: <UserOutlined />, name: '마이페이지' },
 ];
 
 const Footer = () => {

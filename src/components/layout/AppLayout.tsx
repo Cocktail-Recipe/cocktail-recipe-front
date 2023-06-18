@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import React from 'react';
 
 import Footer from './footer/Footer';
+import { StyledAppLayout } from './AppLayout.styled';
 
 interface AppLayoutProps {
   children: JSX.Element;
@@ -12,12 +13,14 @@ interface AppLayoutProps {
 
 const AppLayout = ({ children, header, style }: AppLayoutProps): ReactElement => {
   return (
-    <Layout>
-      {header}
-      {/* TODO: 컴포넌트 style들 마크업 수정시 변경 */}
-      <Layout.Content style={style || { height: 'calc(100vh - 130px)' }}>{children}</Layout.Content>
-      <Footer />
-    </Layout>
+    <StyledAppLayout>
+      <Layout>
+        {header}
+        {/* TODO: 컴포넌트 style들 마크업 수정시 변경 */}
+        <Layout.Content style={style || { height: 'calc(100vh - 170px)' }}>{children}</Layout.Content>
+        <Footer />
+      </Layout>
+    </StyledAppLayout>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback } from 'react';
 import { Button } from 'antd';
-import { ControlOutlined } from '@ant-design/icons';
+import { FilterOutlined } from '@ant-design/icons';
+import { StyledCocktailFilterOptionButton } from './CocktailFilterOptionButton.styled';
 
 interface CocktailFilterOptionButtonProps {
   setFilterDetailDropdownVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,9 +15,11 @@ const CocktailFilterOptionButton = ({
   }, [setFilterDetailDropdownVisible]);
 
   return (
-    <Button onClick={onClickFilterOption}>
-      필터 <ControlOutlined />
-    </Button>
+    <StyledCocktailFilterOptionButton>
+      <Button onClick={onClickFilterOption}>
+        필터 <FilterOutlined />
+      </Button>
+    </StyledCocktailFilterOptionButton>
   );
 };
 

@@ -1,7 +1,8 @@
-import { Space, Typography } from 'antd';
+import { Space } from 'antd';
 import React, { ReactElement } from 'react';
 import { CocktailFlavor } from '@/enum/cocktail';
 import CocktailStyleList from '@/components/common/CocktailStyleList/CocktailStyleList';
+import { StyledCocktailFilterText } from '../common/CocktailFilterText.styled';
 
 interface CocktailStyleFilterProps {
   cocktailStyle?: CocktailFlavor;
@@ -10,8 +11,8 @@ interface CocktailStyleFilterProps {
 
 const CocktailStyleFilter = ({ cocktailStyle, onClickCocktailStyle }: CocktailStyleFilterProps): ReactElement => {
   return (
-    <Space direction="vertical">
-      <Typography.Text>칵테일 스타일</Typography.Text>
+    <Space direction="vertical" style={{ width: '100%' }}>
+      <StyledCocktailFilterText>스타일</StyledCocktailFilterText>
       <CocktailStyleList cocktailStyle={cocktailStyle} onClickCocktailStyle={onClickCocktailStyle} />
     </Space>
   );

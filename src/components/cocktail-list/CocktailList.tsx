@@ -1,11 +1,11 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
-import { FixedSizeList as List } from 'react-window';
+import { FixedSizeGrid as Grid } from 'react-window';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Spin } from 'antd';
 import { useRouter } from 'next/router';
 import InfiniteLoader from 'react-window-infinite-loader';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { PlusCircleOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 
 import useCocktailList from '@/hook/useCocktailList';
 import { cocktailListState } from '@/states/cocktail/cocktailList.state';
@@ -14,7 +14,9 @@ import { Cocktail } from '@/models/cocktail.model';
 import { COCKTAIL_URL } from '@/consts/routeUrl';
 import CocktailCard from './CocktailCard';
 
-const CockTailList = (): ReactElement => {
+import { StyledCocktailCreateBtn } from './CocktailList.styled';
+
+const CocktailList = (): ReactElement => {
   const router = useRouter();
   const cocktails = useRecoilValue(cocktailListState);
   const setSelectedCocktail = useSetRecoilState(selectedCocktailState);
@@ -29,14 +31,18 @@ const CockTailList = (): ReactElement => {
   );
 
   const CocktailItem = useCallback(
-    ({ index, style }: any) => (
-      <CocktailCard
-        cocktail={cocktails[index]}
-        key={cocktails[index]?.cocktailId}
-        style={style}
-        onClick={() => onClickCocktailItem(cocktails[index])}
-      />
-    ),
+    ({ columnIndex, rowIndex, style }: any) => {
+      const index = rowIndex * 2 + columnIndex;
+
+      return (
+        <CocktailCard
+          cocktail={cocktails[index]}
+          key={cocktails[index]?.cocktailId}
+          style={style}
+          onClick={() => onClickCocktailItem(cocktails[index])}
+        />
+      );
+    },
     [cocktails, onClickCocktailItem],
   );
 
@@ -58,33 +64,44 @@ const CockTailList = (): ReactElement => {
     <AutoSizer>
       {({ height, width }) => (
         <InfiniteLoader isItemLoaded={isItemLoaded} itemCount={itemCount} loadMoreItems={loadMoreCocktails}>
-          {({ onItemsRendered, ref }) =>
+          {({ onItemsRendered, ref }: any) =>
             isLoading ? (
               <Spin />
             ) : (
               <>
-                <List
+                <Grid
+                  columnCount={2}
+                  columnWidth={(width as number) / 2}
                   height={height as number}
                   width={width as number}
-                  itemSize={170}
-                  onItemsRendered={onItemsRendered}
+                  rowCount={cocktails.length / 2}
+                  rowHeight={300}
                   ref={ref}
-                  itemCount={itemCount}
+                  onItemsRendered={(gridProps) => {
+                    onItemsRendered({
+                      overscanStartIndex: gridProps.overscanRowStartIndex * 2,
+                      overscanStopIndex: gridProps.overscanRowStopIndex * 2,
+                      visibleStartIndex: gridProps.visibleRowStartIndex * 2,
+                      visibleStopIndex: gridProps.visibleRowStopIndex * 2,
+                    });
+                  }}
                 >
                   {CocktailItem}
-                </List>
-                <PlusCircleOutlined
-                  style={{
-                    position: 'fixed',
-                    fontSize: '30px',
-                    bottom: '80px',
-                    right: '20px',
-                    color: 'green',
-                    borderRadius: '100%',
-                    backgroundColor: 'white',
-                  }}
-                  onClick={onClickCreateCocktailRecipe}
-                />
+                </Grid>
+                <StyledCocktailCreateBtn>
+                  <PlusOutlined
+                    style={{
+                      position: 'fixed',
+                      fontSize: '30px',
+                      bottom: '80px',
+                      right: '20px',
+                      color: 'green',
+                      borderRadius: '100%',
+                      backgroundColor: 'white',
+                    }}
+                    onClick={onClickCreateCocktailRecipe}
+                  />
+                </StyledCocktailCreateBtn>
               </>
             )
           }
@@ -94,4 +111,4 @@ const CockTailList = (): ReactElement => {
   );
 };
 
-export default React.memo(CockTailList);
+export default React.memo(CocktailList);

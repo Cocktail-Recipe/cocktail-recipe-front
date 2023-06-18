@@ -4,6 +4,7 @@ import { Radio, Space } from 'antd';
 import { getCocktailImageSrc } from '@/utils/cocktail';
 import { cocktailBaseAlcoholLabelMap } from '@/consts/cocktail';
 import { CocktailBaseAlcohol } from '@/enum/cocktail';
+import { StyledCocktailFilterItemList } from '../CocktailFilterItemList.styled';
 
 interface BaseAlcoholListProps {
   onClickBaseCocktail: (value: CocktailBaseAlcohol) => void;
@@ -12,25 +13,33 @@ interface BaseAlcoholListProps {
 
 const BaseAlcoholList = ({ onClickBaseCocktail, baseAlcohol }: BaseAlcoholListProps): ReactElement => {
   return (
-    <Radio.Group value={baseAlcohol}>
-      <Space wrap>
-        {Object.entries(cocktailBaseAlcoholLabelMap).map(([name, label]) => {
-          const imgName = name.toLowerCase();
+    <StyledCocktailFilterItemList>
+      <Radio.Group value={baseAlcohol}>
+        <Space wrap>
+          {Object.entries(cocktailBaseAlcoholLabelMap).map(([name, label]) => {
+            const imgName = name.toLowerCase();
 
-          return (
-            <Radio.Button
-              key={name}
-              value={name}
-              onClick={() => onClickBaseCocktail(name as CocktailBaseAlcohol)}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '70px' }}
-            >
-              <Image src={getCocktailImageSrc(imgName)} alt={label} width={32} height={32} />
-              <div>{label}</div>
-            </Radio.Button>
-          );
-        })}
-      </Space>
-    </Radio.Group>
+            return (
+              <Radio.Button
+                className="cocktail-filter-item"
+                key={name}
+                value={name}
+                onClick={() => onClickBaseCocktail(name as CocktailBaseAlcohol)}
+              >
+                <Image
+                  className="cocktail-filter-item-image"
+                  src={getCocktailImageSrc(imgName)}
+                  alt={label}
+                  width={60}
+                  height={60}
+                />
+                <div className="cocktail-filter-item-label">{label}</div>
+              </Radio.Button>
+            );
+          })}
+        </Space>
+      </Radio.Group>
+    </StyledCocktailFilterItemList>
   );
 };
 

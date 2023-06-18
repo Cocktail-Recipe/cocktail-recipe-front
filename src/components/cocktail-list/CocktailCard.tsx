@@ -1,10 +1,11 @@
-import { List, Image } from 'antd';
+import { List, Image, Card } from 'antd';
 import React, { ReactElement } from 'react';
 import { Cocktail } from '@/models/cocktail.model';
 import { getCocktailHashTags } from '@/utils/cocktail';
 
 import CounterContainer from '../common/CountContainer';
-import { StyledCocktailCard } from './CocktailCard.syled';
+
+import { StyledCocktailCard } from './CocktailCard.styled';
 
 interface CocktailCardProps {
   cocktail: Cocktail;
@@ -29,23 +30,24 @@ const CocktailCard = ({ cocktail, onClick, style }: CocktailCardProps): ReactEle
   } = cocktail;
 
   return (
-    <StyledCocktailCard style={style}>
+    <StyledCocktailCard style={{ ...style, width: '50%', padding: '5px' }}>
       <List.Item onClick={onClick}>
-        <List.Item.Meta
-          avatar={<Image src={thumbnail} alt={englishName} width={150} height={150} />}
-          title={koreanName}
-          description={
-            <>
-              {getCocktailHashTags({
-                baseAlcohol,
-                cocktailStyle,
-                seasonalStyle,
-                volume,
-              })}
-              <CounterContainer viewCount={viewCount} likeCount={likeCount} commentCount={commentCount} />
-            </>
-          }
-        />
+        <Card cover={<Image src={thumbnail} alt={englishName} width="100%" height={150} />}>
+          <Card.Meta
+            title={koreanName}
+            description={
+              <>
+                {getCocktailHashTags({
+                  baseAlcohol,
+                  cocktailStyle,
+                  seasonalStyle,
+                  volume,
+                })}
+                <CounterContainer viewCount={viewCount} likeCount={likeCount} commentCount={commentCount} />
+              </>
+            }
+          />
+        </Card>
       </List.Item>
     </StyledCocktailCard>
   );

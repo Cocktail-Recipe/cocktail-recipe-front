@@ -1,8 +1,8 @@
 import { Layout } from 'antd';
 import { ReactElement, useCallback, useState } from 'react';
 import { Typography } from 'antd';
+import { BellOutlined } from '@ant-design/icons';
 import MenuIcon from '@material-ui/icons/Menu';
-import Search from '@material-ui/icons/Search';
 import NavDrawer from '../nav-drawer/NavDrawer';
 
 import { StyledHeader } from './Header.styled';
@@ -22,9 +22,9 @@ const Header = (): ReactElement => {
     <>
       <StyledHeader>
         <Layout.Header>
+          <Typography.Text>칵테일</Typography.Text>
+          <BellOutlined />
           <MenuIcon onClick={toggleDrawerOpen} />
-          <Typography.Text>Cocktail App</Typography.Text>
-          <Search />
         </Layout.Header>
       </StyledHeader>
       <NavDrawer isDrawerOpen={isNavDrawerVisible} onCloseDrawer={onCloseNavDrawer} />
