@@ -11,7 +11,7 @@ export const StyledAppLayout = styled.div`
 
   .ant-layout.cocktail-editor-page {
     .ant-layout-content {
-      padding: 0px !important;
+      padding: 40px !important;
       height: calc(100vh - 130px) !important;
     }
   }
