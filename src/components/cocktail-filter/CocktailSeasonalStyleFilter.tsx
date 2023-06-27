@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
-import { Space, Typography } from 'antd';
+import { Space } from 'antd';
 import { CocktailSeasonalStyle } from '@/enum/cocktail';
 import CocktailSeasonalStyleList from '@/components/common/CocktailSeasonalStyleList/CocktailSeasonalStyleList';
+import { StyledCocktailFilterText } from '../common/CocktailFilterText.styled';
 
 interface CocktailSeasonalStyleFilterProps {
   seasonalStyle?: CocktailSeasonalStyle;
@@ -13,8 +14,8 @@ const CocktailSeasonalStyleFilter = ({
   onClickCocktailSeasonalStyle,
 }: CocktailSeasonalStyleFilterProps): ReactElement => {
   return (
-    <Space direction="vertical">
-      <Typography.Text>시즈널</Typography.Text>
+    <Space direction="vertical" style={{ width: '100%' }}>
+      <StyledCocktailFilterText>시즈널</StyledCocktailFilterText>
       <CocktailSeasonalStyleList
         seasonalStyle={seasonalStyle}
         onClickCocktailSeasonalStyle={onClickCocktailSeasonalStyle}

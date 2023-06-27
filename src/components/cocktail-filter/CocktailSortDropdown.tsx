@@ -3,9 +3,10 @@ import { ReactElement, useCallback, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { MenuClickEventHandler } from 'rc-menu/lib/interface';
 import { cocktailSearchSortByState } from '@/states/cocktail/cocktailSearchRequest.state';
-import { DownOutlined } from '@ant-design/icons';
+import { CaretDownOutlined } from '@ant-design/icons';
 import { cocktailSortLabelMap } from '@/consts/cocktail';
 import { CocktailSort } from '@/enum/cocktail';
+import { StyledCocktailSortDropdownContainer } from './CocktailSortDropdown.styled';
 
 const SORT_BY_DROPDOWN_ITEMS: MenuProps['items'] = [
   {
@@ -38,20 +39,23 @@ const CocktailListSortDropdown = (): ReactElement => {
   );
 
   return (
-    <Dropdown
-      menu={{
-        items: SORT_BY_DROPDOWN_ITEMS,
-        onClick: onChangeSortBy,
-      }}
-      onOpenChange={onChangeOpen}
-      open={isDropdownOpen}
-    >
-      <a onClick={(e) => e.preventDefault()}>
-        <Space>
-          {cocktailSortLabelMap[cocktailsSortBy]} <DownOutlined />
-        </Space>
-      </a>
-    </Dropdown>
+    <StyledCocktailSortDropdownContainer>
+      <Dropdown
+        menu={{
+          items: SORT_BY_DROPDOWN_ITEMS,
+          onClick: onChangeSortBy,
+        }}
+        onOpenChange={onChangeOpen}
+        open={isDropdownOpen}
+      >
+        <a onClick={(e) => e.preventDefault()}>
+          <Space>
+            {cocktailSortLabelMap[cocktailsSortBy]}
+            <CaretDownOutlined />
+          </Space>
+        </a>
+      </Dropdown>
+    </StyledCocktailSortDropdownContainer>
   );
 };
 

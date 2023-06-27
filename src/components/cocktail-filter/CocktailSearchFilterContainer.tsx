@@ -1,24 +1,27 @@
 import { ReactElement, useState } from 'react';
-import { Space } from 'antd';
 
 import CocktailListSortDropdown from './CocktailSortDropdown';
 import CocktailFilterOptionButton from './CocktailFilterOptionButton';
 import CocktailLike from './CocktailLike';
 import CocktailFilterDetailDropdown from './CocktailFilterDetailDropdown';
 
+import { StyledSearchFilterContainer } from './CocktailSearchFilterContainer.styled';
+
 const CocktailSearchFilterContainer = (): ReactElement => {
   const [isFilterDetailDropdownVisible, setFilterDetailDropdownVisible] = useState(false);
 
   return (
-    <Space wrap>
+    <StyledSearchFilterContainer>
       <CocktailListSortDropdown />
-      <CocktailFilterOptionButton setFilterDetailDropdownVisible={setFilterDetailDropdownVisible} />
-      <CocktailFilterDetailDropdown
-        isVisible={isFilterDetailDropdownVisible}
-        setVisible={setFilterDetailDropdownVisible}
-      />
-      <CocktailLike />
-    </Space>
+      <div className="right-buttons">
+        <CocktailFilterOptionButton setFilterDetailDropdownVisible={setFilterDetailDropdownVisible} />
+        <CocktailFilterDetailDropdown
+          isVisible={isFilterDetailDropdownVisible}
+          setVisible={setFilterDetailDropdownVisible}
+        />
+        <CocktailLike />
+      </div>
+    </StyledSearchFilterContainer>
   );
 };
 

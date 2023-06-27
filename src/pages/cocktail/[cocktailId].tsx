@@ -15,7 +15,7 @@ const CocktailDetailPage = ({ cocktail }: CocktailDetailPageProps): ReactElement
   if (!cocktail) return <></>;
 
   return (
-    <AppLayout header={<HeaderWithLinks />} style={{ height: '100%' }}>
+    <AppLayout header={<HeaderWithLinks />} className="cocktail-detail-page" hasFooter={false}>
       <>
         <CocktailInfo cocktail={cocktail} />
         <CocktailIngredientContainer ingredients={cocktail.ingredientList} />

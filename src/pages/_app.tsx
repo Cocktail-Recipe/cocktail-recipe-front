@@ -11,8 +11,9 @@ const GlobalStyled = createGlobalStyle`
     margin: 0;
     padding: 0;
     padding-bottom: 60px;
-    background-color: #EFEFEF;
+    background-color: #141414;;
     min-height: 100%;
+    color: #ffffff;
   }
   .scroll {
     &::-webkit-scrollbar {

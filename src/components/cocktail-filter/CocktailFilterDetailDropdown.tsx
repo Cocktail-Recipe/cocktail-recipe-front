@@ -1,12 +1,14 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useCallback, useRef, useState } from 'react';
 import { Drawer, Space, Button } from 'antd';
 import { useSetRecoilState } from 'recoil';
+import { CloseOutlined } from '@ant-design/icons';
 import { CocktailBaseAlcohol, CocktailFlavor, CocktailSeasonalStyle } from '@/enum/cocktail';
 import { cocktailSearchRequestState } from '@/states/cocktail/cocktailSearchRequest.state';
 import CocktailBaseAlcoholFilter from './CocktailBaseAlcoholFilter';
 import CocktailVolumeFilter from './CocktailVolumeFilter';
 import CocktailStyleFilter from './CocktailStyleFilter';
 import CocktailSeasonalStyleFilter from './CocktailSeasonalStyleFilter';
+import { StyledCocktailFilterDetailDropdown } from './CocktailFilterDetailDropdown.styled';
 
 interface CocktailFilterDetailDropdownProps {
   isVisible: boolean;
@@ -44,28 +46,43 @@ const CocktailFilterDetailDropdown = ({ isVisible, setVisible }: CocktailFilterD
     setVisible(false);
   }, [baseAlcohol, cocktailStyle, maxVolume, minVolume, seasonalStyle, setCocktailSearchRequestFilters, setVisible]);
 
+  const onCloseFilterDetailDropdown = useCallback(() => {
+    setVisible(false);
+  }, [setVisible]);
+
   return (
-    <Drawer
-      placement={'bottom'}
-      height="80vh"
-      onClose={() => setVisible(false)}
-      open={isVisible}
-      extra={
-        <Space>
-          <Button onClick={onClickFilterChangeButton}>필터 적용</Button>
+    <StyledCocktailFilterDetailDropdown>
+      <Drawer
+        title="필터 적용"
+        className="cocktail-filter-detail-dropdown"
+        placement={'bottom'}
+        height="80vh"
+        onClose={() => setVisible(false)}
+        closable={false}
+        open={isVisible}
+        getContainer={false}
+        extra={
+          <Space>
+            <Button onClick={onCloseFilterDetailDropdown}>
+              <CloseOutlined />
+            </Button>
+          </Space>
+        }
+      >
+        <Space direction="vertical" size="large">
+          <CocktailBaseAlcoholFilter baseAlcohol={baseAlcohol} onClickBaseAlcohol={onClickBaseAlcohol} />
+          <CocktailVolumeFilter onChangeCocktailVolume={onChangeCocktailVolume} />
+          <CocktailStyleFilter cocktailStyle={cocktailStyle} onClickCocktailStyle={onClickCocktailStyle} />
+          <CocktailSeasonalStyleFilter
+            seasonalStyle={seasonalStyle}
+            onClickCocktailSeasonalStyle={onClickCocktailSeasonalStyle}
+          />
+          <Button className="filter-apply-btn" onClick={onClickFilterChangeButton}>
+            적용
+          </Button>
         </Space>
-      }
-    >
-      <Space direction="vertical">
-        <CocktailBaseAlcoholFilter baseAlcohol={baseAlcohol} onClickBaseAlcohol={onClickBaseAlcohol} />
-        <CocktailVolumeFilter onChangeCocktailVolume={onChangeCocktailVolume} />
-        <CocktailStyleFilter cocktailStyle={cocktailStyle} onClickCocktailStyle={onClickCocktailStyle} />
-        <CocktailSeasonalStyleFilter
-          seasonalStyle={seasonalStyle}
-          onClickCocktailSeasonalStyle={onClickCocktailSeasonalStyle}
-        />
-      </Space>
-    </Drawer>
+      </Drawer>
+    </StyledCocktailFilterDetailDropdown>
   );
 };
 
