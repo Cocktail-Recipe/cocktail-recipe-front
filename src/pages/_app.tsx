@@ -1,8 +1,8 @@
 import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { RecoilRoot, RecoilEnv } from 'recoil';
-
+import { SessionProvider } from 'next-auth/react';
 import { createGlobalStyle } from 'styled-components';
+import { Session } from 'next-auth';
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
@@ -24,15 +24,14 @@ const GlobalStyled = createGlobalStyle`
   }
 `;
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps<{ session: Session }>) {
   return (
-    <RecoilRoot>
-      <GlobalStyled />
-      <Component {...pageProps} />
-      <Head>
-        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-      </Head>
-    </RecoilRoot>
+    <SessionProvider session={session} refetchInterval={0} refetchOnWindowFocus={false}>
+      <RecoilRoot>
+        <GlobalStyled />
+        <Component {...pageProps} />
+      </RecoilRoot>
+    </SessionProvider>
   );
 }
 

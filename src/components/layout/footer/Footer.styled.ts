@@ -13,6 +13,12 @@ export const StyledFooter = styled.footer`
   border: solid 1px rgba(255, 255, 255, 0.1);
   background-color: #141414;
 
+  a {
+    button {
+      width: 100% !important;
+    }
+  }
+
   .clicked-menu {
     color: #fff;
   }

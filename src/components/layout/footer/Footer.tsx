@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
+import Link from 'next/link';
 import { HomeOutlined, LocalBarOutlined } from '@material-ui/icons';
 import { HddOutlined, PicLeftOutlined, UserOutlined } from '@ant-design/icons';
 import { COCKTAIL_URL, COMMUNITY_URL, MAIN_URL, MESSAGE_URL, MYPAGE_URL } from '@/consts/routeUrl';
@@ -24,15 +25,9 @@ const Footer = () => {
     <StyledFooter>
       {footerList.map(({ url, icon, name }) => {
         return (
-          <TextIcon
-            key={name}
-            className={isCurrentClickedMenu(url) ? 'clicked-menu' : undefined}
-            icon={icon}
-            name={name}
-            onClick={async () => {
-              await router.push(url);
-            }}
-          />
+          <Link key={name} href={url}>
+            <TextIcon key={name} icon={icon} name={name} className={isCurrentClickedMenu(url) ? 'clicked-menu' : ''} />
+          </Link>
         );
       })}
     </StyledFooter>
