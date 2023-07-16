@@ -1,22 +1,36 @@
 import { Layout } from 'antd';
-import { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback } from 'react';
 import { Typography } from 'antd';
+import { useSetRecoilState } from 'recoil';
 import { BellOutlined } from '@ant-design/icons';
 import MenuIcon from '@material-ui/icons/Menu';
+import SocialLoginDrawer from '@/components/social-login/social-login-drawer/SocialLoginDrawer';
+import { isNavDrawerOpen, isSocialLoginDrawerOpen } from '@/states/drawer/drawer.state';
 import NavDrawer from '../nav-drawer/NavDrawer';
 
 import { StyledHeader } from './Header.styled';
 
 const Header = (): ReactElement => {
-  const [isNavDrawerVisible, setIsNavDrawerVisible] = useState(false);
+  const setIsNavDrawerVisible = useSetRecoilState(isNavDrawerOpen);
+  const setIsSocialLoginDrawerVisible = useSetRecoilState(isSocialLoginDrawerOpen);
 
   const toggleDrawerOpen = useCallback(() => {
     setIsNavDrawerVisible((isVisible) => !isVisible);
-  }, []);
+  }, [setIsNavDrawerVisible]);
 
   const onCloseNavDrawer = useCallback(() => {
     setIsNavDrawerVisible(false);
-  }, []);
+  }, [setIsNavDrawerVisible]);
+
+  const onCloseSocialLoginDrawer = useCallback(() => {
+    setIsSocialLoginDrawerVisible(false);
+    setIsNavDrawerVisible(true);
+  }, [setIsNavDrawerVisible, setIsSocialLoginDrawerVisible]);
+
+  const onOpenSocialLoginDrawer = useCallback(() => {
+    setIsNavDrawerVisible(false);
+    setIsSocialLoginDrawerVisible(true);
+  }, [setIsNavDrawerVisible, setIsSocialLoginDrawerVisible]);
 
   return (
     <>
@@ -27,7 +41,8 @@ const Header = (): ReactElement => {
           <MenuIcon onClick={toggleDrawerOpen} />
         </Layout.Header>
       </StyledHeader>
-      <NavDrawer isDrawerOpen={isNavDrawerVisible} onCloseDrawer={onCloseNavDrawer} />
+      <NavDrawer onCloseDrawer={onCloseNavDrawer} onOpenSocialLoginDrawer={onOpenSocialLoginDrawer} />
+      <SocialLoginDrawer onCloseDrawer={onCloseSocialLoginDrawer} />
     </>
   );
 };

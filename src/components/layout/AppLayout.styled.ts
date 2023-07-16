@@ -16,6 +16,15 @@ export const StyledAppLayout = styled.div`
     }
   }
 
+  .cocktail-list-page .ant-layout-content {
+    height: calc(100vh - 210px);
+  }
+
+  .main-page .ant-layout-content {
+    height: 100%;
+    padding-bottom: 70px;
+  }
+
   .ant-layout-content {
     padding: 0px 20px;
     background-color: #141414;
