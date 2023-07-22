@@ -8,7 +8,7 @@ import Header from '@/components/layout/header/Header';
 
 const CocktailPage = (): ReactElement => {
   return (
-    <AppLayout header={<Header />}>
+    <AppLayout header={<Header />} className="cocktail-list-page">
       <>
         <CocktailSearch />
         <CocktailSearchFilterContainer />
