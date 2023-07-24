@@ -16,7 +16,13 @@ import CocktailCard from './CocktailCard';
 
 import { StyledCocktailCreateBtn } from './CocktailList.styled';
 
-const CocktailList = (): ReactElement => {
+interface CocktailListProps {
+  rowCount?: number;
+}
+
+const DEFAULT_COLUMN_COUNT = 2;
+
+const CocktailList = ({ rowCount }: CocktailListProps): ReactElement => {
   const router = useRouter();
   const cocktails = useRecoilValue(cocktailListState);
   const setSelectedCocktail = useSetRecoilState(selectedCocktailState);
@@ -61,7 +67,7 @@ const CocktailList = (): ReactElement => {
   }, [router]);
 
   return (
-    <AutoSizer>
+    <AutoSizer className="auto-sizer">
       {({ height, width }) => (
         <InfiniteLoader isItemLoaded={isItemLoaded} itemCount={itemCount} loadMoreItems={loadMoreCocktails}>
           {({ onItemsRendered, ref }: any) =>
@@ -70,11 +76,11 @@ const CocktailList = (): ReactElement => {
             ) : (
               <>
                 <Grid
-                  columnCount={2}
+                  columnCount={rowCount === 1 ? cocktails.length : DEFAULT_COLUMN_COUNT}
                   columnWidth={(width as number) / 2}
                   height={height as number}
                   width={width as number}
-                  rowCount={cocktails.length / 2}
+                  rowCount={rowCount || cocktails.length / 2}
                   rowHeight={300}
                   ref={ref}
                   onItemsRendered={(gridProps) => {
@@ -89,18 +95,7 @@ const CocktailList = (): ReactElement => {
                   {CocktailItem}
                 </Grid>
                 <StyledCocktailCreateBtn>
-                  <PlusOutlined
-                    style={{
-                      position: 'fixed',
-                      fontSize: '30px',
-                      bottom: '80px',
-                      right: '20px',
-                      color: 'green',
-                      borderRadius: '100%',
-                      backgroundColor: 'white',
-                    }}
-                    onClick={onClickCreateCocktailRecipe}
-                  />
+                  <PlusOutlined onClick={onClickCreateCocktailRecipe} />
                 </StyledCocktailCreateBtn>
               </>
             )
