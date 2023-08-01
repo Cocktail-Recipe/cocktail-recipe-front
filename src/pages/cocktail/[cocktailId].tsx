@@ -1,4 +1,5 @@
-import { ReactElement } from 'react';
+import { ReactElement, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import cocktailAPI from '@/api/cocktail';
 import CocktailInfo from '@/components/cocktail-info/CocktailInfo';
 import CocktailIngredientContainer from '@/components/cocktail-ingredient/CocktailIngredientContainer';
@@ -6,16 +7,26 @@ import CocktailRecipe from '@/components/cocktail-recipe/CocktailRecipe';
 import AppLayout from '@/components/layout/AppLayout';
 import HeaderWithLinks from '@/components/layout/header/HeaderWithLinks';
 import { Cocktail } from '@/models/cocktail.model';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 interface CocktailDetailPageProps {
   cocktail: Cocktail | null;
 }
 
 const CocktailDetailPage = ({ cocktail }: CocktailDetailPageProps): ReactElement => {
+  const router = useRouter();
+  const onClickBacklink = useCallback(() => {
+    router.back();
+  }, [router]);
+
   if (!cocktail) return <></>;
 
   return (
-    <AppLayout header={<HeaderWithLinks />} className="cocktail-detail-page" hasFooter={false}>
+    <AppLayout
+      header={<HeaderWithLinks backLink={<ArrowLeftOutlined onClick={onClickBacklink} />} />}
+      className="cocktail-detail-page"
+      hasFooter={false}
+    >
       <>
         <CocktailInfo cocktail={cocktail} />
         <CocktailIngredientContainer ingredients={cocktail.ingredientList} />

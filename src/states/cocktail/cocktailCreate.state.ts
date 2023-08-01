@@ -77,11 +77,11 @@ export const cocktailEditInputState = selector<CocktailEditInputState>({
       seasonalStyle: get(cocktailSeasonalState),
       introduce: get(cocktailIntroduceState),
       image: get(cocktailImageState),
-      ingredientList: get(cocktailIngredientListState),
+      ingredientList: get(cocktailIngredientListState) || [],
       recipe: get(cocktailRecipeState),
     };
   },
-  set: ({ reset }, newState) => {
+  set: ({ get, set, reset }, newState) => {
     if (newState instanceof DefaultValue) {
       reset(cocktailKoreanNameState);
       reset(cocktailEnglishNameState);
@@ -96,5 +96,29 @@ export const cocktailEditInputState = selector<CocktailEditInputState>({
 
       return;
     }
+
+    const {
+      koreanName,
+      englishName,
+      baseAlcohol,
+      volume,
+      cocktailStyle,
+      seasonalStyle,
+      introduce,
+      image,
+      ingredientList,
+      recipe,
+    } = newState;
+
+    set(cocktailKoreanNameState, koreanName || get(cocktailKoreanNameState));
+    set(cocktailEnglishNameState, englishName || get(cocktailEnglishNameState));
+    set(cocktailBaseAlcoholState, baseAlcohol || get(cocktailBaseAlcoholState));
+    set(cocktailVolumeState, volume || get(cocktailVolumeState));
+    set(cocktailStyleState, cocktailStyle || get(cocktailStyleState));
+    set(cocktailSeasonalState, seasonalStyle || get(cocktailSeasonalState));
+    set(cocktailIntroduceState, introduce || get(cocktailIntroduceState));
+    set(cocktailImageState, image || get(cocktailImageState));
+    set(cocktailIngredientListState, ingredientList || get(cocktailIngredientListState));
+    set(cocktailRecipeState, recipe || get(cocktailRecipeState));
   },
 });

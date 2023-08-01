@@ -16,6 +16,7 @@ const CocktailSearchFilterContainer = (): ReactElement => {
       <div className="right-buttons">
         <CocktailFilterOptionButton setFilterDetailDropdownVisible={setFilterDetailDropdownVisible} />
         <CocktailFilterDetailDropdown
+          title="필터 적용"
           isVisible={isFilterDetailDropdownVisible}
           setVisible={setFilterDetailDropdownVisible}
         />

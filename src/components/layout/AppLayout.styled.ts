@@ -13,9 +13,48 @@ export const StyledAppLayout = styled.div`
     .ant-typography {
       color: white !important;
     }
+    height: 100vh !important;
+
+    .ant-layout-header {
+      font-family: AppleSDGothicNeo;
+      font-size: 20px;
+      font-weight: 600;
+      position: fixed;
+      z-index: 100;
+    }
     .ant-layout-content {
       padding: 40px !important;
-      height: calc(100vh - 130px) !important;
+      padding-top: 70px !important;
+    }
+    .ant-drawer {
+      position: fixed !important;
+    }
+    .ant-space {
+      width: 100%;
+    }
+    .filter-apply-btn {
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      border: none;
+      border-radius: 0px;
+      color: #fff;
+      height: 48px;
+      background-color: #ff4e16;
+      margin-left: -40px;
+      margin-right: -40px;
+    }
+    .ant-avatar {
+      border: 1px solid white;
+    }
+    .ant-list-item div {
+      color: white;
+    }
+    .ant-list-item-meta-title {
+      color: white;
+    }
+    .auto-sizer {
+      height: 800px !important;
     }
   }
 

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledCocktailFilterDetailDropdown = styled.div`
   .cocktail-filter-detail-dropdown {
+    padding-bottom: 50px;
     .ant-drawer-body {
       background-color: #141414;
     }

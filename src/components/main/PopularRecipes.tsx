@@ -14,7 +14,7 @@ const PopularRecipes = (): ReactElement => {
       <Link href={COCKTAIL_URL}>
         <RightOutlined />
       </Link>
-      <CocktailList rowCount={1} />
+      <CocktailList rowCount={1} hasRecipeCreateBtn={false} />
     </StyledPopularRecipes>
   );
 };

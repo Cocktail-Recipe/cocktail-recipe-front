@@ -10,7 +10,8 @@ const CocktailPage = (): ReactElement => {
   return (
     <AppLayout header={<Header />} className="cocktail-list-page">
       <>
-        <CocktailSearch />
+        {/* TODO: pageName 상수화 */}
+        <CocktailSearch pageName="cocktail-list" />
         <CocktailSearchFilterContainer />
         <CockTailList />
       </>

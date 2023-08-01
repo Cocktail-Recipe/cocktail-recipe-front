@@ -1,20 +1,19 @@
-import { Input, Typography } from 'antd';
 import { ReactElement } from 'react';
 import { StyledCocktailEditorInput, StyledCocktailEditorInputTitle } from './CocktailEditor.styled';
+import { Typography } from 'antd';
+import TextArea from 'antd/es/input/TextArea';
 
-const { TextArea } = Input;
-
-const CocktailInfo = (): ReactElement => {
+const CocktailRecipe = (): ReactElement => {
   return (
     <div style={{ marginBottom: '50px' }}>
       <StyledCocktailEditorInputTitle>
-        <Typography.Text>칵테일 정보</Typography.Text>
+        <Typography.Text>레시피 설명</Typography.Text>
       </StyledCocktailEditorInputTitle>
       <StyledCocktailEditorInput>
-        <TextArea rows={3} placeholder="칵테일 정보를 입력해 주세요." maxLength={150} required />
+        <TextArea rows={10} placeholder="예시" maxLength={150} required />
       </StyledCocktailEditorInput>
     </div>
   );
 };
 
-export default CocktailInfo;
+export default CocktailRecipe;

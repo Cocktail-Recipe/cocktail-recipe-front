@@ -1,7 +1,7 @@
 import { CocktailBaseAlcohol, CocktailFlavor, CocktailSeasonalStyle, CocktailSort } from '@/enum/cocktail';
 import { DefaultValue, atom, selector } from 'recoil';
 
-export interface CocktailSearchRequestState {
+export interface CocktailSearchRequestParamsState {
   nameOrIngredient?: string;
   size?: number;
   page?: number;
@@ -72,7 +72,7 @@ export const cocktailSearchSeasonalStyleState = atom<CocktailSeasonalStyle | und
   default: undefined,
 });
 
-export const cocktailSearchRequestState = selector<CocktailSearchRequestState>({
+export const cocktailSearchRequestState = selector<CocktailSearchRequestParamsState>({
   key: 'cocktailSearchRequestState',
   get: ({ get }) => {
     return {

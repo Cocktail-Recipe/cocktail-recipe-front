@@ -11,7 +11,7 @@ export const StyledCocktailCreateBtn = styled.div`
     color: 'green';
     border-radius: 100%;
     background-color: white;
-    z-index: 1000 !important;
+    z-index: 1 !important;
 
     svg {
       width: 44px;

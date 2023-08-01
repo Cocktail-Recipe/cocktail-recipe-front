@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import cocktailAPI from '@/api/cocktail';
-import { CocktailSearchRequestState, cocktailSearchRequestState } from '@/states/cocktail/cocktailSearchRequest.state';
+import {
+  CocktailSearchRequestParamsState,
+  cocktailSearchRequestState,
+} from '@/states/cocktail/cocktailSearchRequest.state';
 import { Cocktail } from '@/models/cocktail.model';
 import { cocktailListState } from '@/states/cocktail/cocktailList.state';
 
@@ -16,7 +19,7 @@ const useCocktailList = () => {
   const [isLoading, setLoading] = useState(true);
 
   const loadCocktails = useCallback(
-    (hasMore: boolean, params: CocktailSearchRequestState) => {
+    (hasMore: boolean, params: CocktailSearchRequestParamsState) => {
       setLoading(true);
 
       cocktailAPI

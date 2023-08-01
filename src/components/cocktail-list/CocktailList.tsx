@@ -18,11 +18,12 @@ import { StyledCocktailCreateBtn } from './CocktailList.styled';
 
 interface CocktailListProps {
   rowCount?: number;
+  hasRecipeCreateBtn?: boolean;
 }
 
 const DEFAULT_COLUMN_COUNT = 2;
 
-const CocktailList = ({ rowCount }: CocktailListProps): ReactElement => {
+const CocktailList = ({ rowCount, hasRecipeCreateBtn = true }: CocktailListProps): ReactElement => {
   const router = useRouter();
   const cocktails = useRecoilValue(cocktailListState);
   const setSelectedCocktail = useSetRecoilState(selectedCocktailState);
@@ -94,9 +95,11 @@ const CocktailList = ({ rowCount }: CocktailListProps): ReactElement => {
                 >
                   {CocktailItem}
                 </Grid>
-                <StyledCocktailCreateBtn>
-                  <PlusOutlined onClick={onClickCreateCocktailRecipe} />
-                </StyledCocktailCreateBtn>
+                {hasRecipeCreateBtn && (
+                  <StyledCocktailCreateBtn>
+                    <PlusOutlined onClick={onClickCreateCocktailRecipe} />
+                  </StyledCocktailCreateBtn>
+                )}
               </>
             )
           }

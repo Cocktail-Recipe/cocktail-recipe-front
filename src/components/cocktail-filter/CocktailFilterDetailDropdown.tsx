@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useRef, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { Drawer, Space, Button } from 'antd';
 import { useSetRecoilState } from 'recoil';
 import { CloseOutlined } from '@ant-design/icons';
@@ -9,13 +9,23 @@ import CocktailVolumeFilter from './CocktailVolumeFilter';
 import CocktailStyleFilter from './CocktailStyleFilter';
 import CocktailSeasonalStyleFilter from './CocktailSeasonalStyleFilter';
 import { StyledCocktailFilterDetailDropdown } from './CocktailFilterDetailDropdown.styled';
+import { cocktailEditInputState } from '@/states/cocktail/cocktailCreate.state';
 
 interface CocktailFilterDetailDropdownProps {
+  title: string;
   isVisible: boolean;
+  isSingleRangeVolume?: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CocktailFilterDetailDropdown = ({ isVisible, setVisible }: CocktailFilterDetailDropdownProps): ReactElement => {
+const CocktailFilterDetailDropdown = ({
+  title,
+  isVisible,
+  isSingleRangeVolume = false,
+  setVisible,
+}: CocktailFilterDetailDropdownProps): ReactElement => {
+  const drawerRef = useRef<HTMLDivElement>(null);
+
   const [baseAlcohol, setBaseAlcohol] = useState<CocktailBaseAlcohol>();
   const [minVolume, setMinVolume] = useState(0);
   const [maxVolume, setMaxVolume] = useState(40);
@@ -23,6 +33,7 @@ const CocktailFilterDetailDropdown = ({ isVisible, setVisible }: CocktailFilterD
   const [seasonalStyle, setSeasonalStyle] = useState<CocktailSeasonalStyle>();
 
   const setCocktailSearchRequestFilters = useSetRecoilState(cocktailSearchRequestState);
+  const setCocktailEditInputFilters = useSetRecoilState(cocktailEditInputState);
 
   const onClickCocktailSeasonalStyle = useCallback((value: CocktailSeasonalStyle) => {
     setSeasonalStyle((prev) => (prev === value ? undefined : value));
@@ -36,15 +47,37 @@ const CocktailFilterDetailDropdown = ({ isVisible, setVisible }: CocktailFilterD
     setCocktailStyle((prev) => (prev === value ? undefined : value));
   }, []);
 
-  const onChangeCocktailVolume = useCallback((values: [number, number]) => {
-    setMinVolume(values[0]);
-    setMaxVolume(values[1]);
-  }, []);
+  const onChangeCocktailVolume = useCallback(
+    (value: [number, number] | number) => {
+      if (isSingleRangeVolume) {
+        setMinVolume(value as number);
+      } else {
+        const volumes = value as [number, number];
+        setMinVolume(volumes[0]);
+        setMaxVolume(volumes[1]);
+      }
+    },
+    [isSingleRangeVolume],
+  );
 
   const onClickFilterChangeButton = useCallback(() => {
-    setCocktailSearchRequestFilters({ baseAlcohol, cocktailStyle, seasonalStyle, minVolume, maxVolume });
+    if (isSingleRangeVolume) {
+      setCocktailEditInputFilters({ baseAlcohol, cocktailStyle, seasonalStyle, volume: minVolume, ingredientList: [] });
+    } else {
+      setCocktailSearchRequestFilters({ baseAlcohol, cocktailStyle, seasonalStyle, minVolume, maxVolume });
+    }
     setVisible(false);
-  }, [baseAlcohol, cocktailStyle, maxVolume, minVolume, seasonalStyle, setCocktailSearchRequestFilters, setVisible]);
+  }, [
+    baseAlcohol,
+    cocktailStyle,
+    isSingleRangeVolume,
+    maxVolume,
+    minVolume,
+    seasonalStyle,
+    setCocktailEditInputFilters,
+    setCocktailSearchRequestFilters,
+    setVisible,
+  ]);
 
   const onCloseFilterDetailDropdown = useCallback(() => {
     setVisible(false);
@@ -53,9 +86,9 @@ const CocktailFilterDetailDropdown = ({ isVisible, setVisible }: CocktailFilterD
   return (
     <StyledCocktailFilterDetailDropdown>
       <Drawer
-        title="필터 적용"
+        title={title}
         className="cocktail-filter-detail-dropdown"
-        placement={'bottom'}
+        placement="bottom"
         height="80vh"
         onClose={() => setVisible(false)}
         closable={false}
@@ -71,7 +104,7 @@ const CocktailFilterDetailDropdown = ({ isVisible, setVisible }: CocktailFilterD
       >
         <Space direction="vertical" size="large">
           <CocktailBaseAlcoholFilter baseAlcohol={baseAlcohol} onClickBaseAlcohol={onClickBaseAlcohol} />
-          <CocktailVolumeFilter onChangeCocktailVolume={onChangeCocktailVolume} />
+          <CocktailVolumeFilter onChangeCocktailVolume={onChangeCocktailVolume} isSingleRange={isSingleRangeVolume} />
           <CocktailStyleFilter cocktailStyle={cocktailStyle} onClickCocktailStyle={onClickCocktailStyle} />
           <CocktailSeasonalStyleFilter
             seasonalStyle={seasonalStyle}

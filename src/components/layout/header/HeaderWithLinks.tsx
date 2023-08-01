@@ -6,20 +6,15 @@ import { StyledHeader } from './Header.styled';
 
 interface HeaderWithlinksProps {
   title?: string;
+  backLink?: JSX.Element;
   nextLink?: JSX.Element;
 }
 
-const HeaderWithlinks = ({ title, nextLink }: HeaderWithlinksProps): ReactElement => {
-  const router = useRouter();
-
-  const onClickBacklink = useCallback(() => {
-    router.back();
-  }, [router]);
-
+const HeaderWithlinks = ({ title, backLink, nextLink }: HeaderWithlinksProps): ReactElement => {
   return (
     <StyledHeader>
       <Layout.Header>
-        <ArrowLeftOutlined onClick={onClickBacklink} />
+        {backLink}
         {title}
         {nextLink}
       </Layout.Header>

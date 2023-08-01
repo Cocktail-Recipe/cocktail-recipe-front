@@ -10,7 +10,11 @@ import NavDrawer from '../nav-drawer/NavDrawer';
 
 import { StyledHeader } from './Header.styled';
 
-const Header = (): ReactElement => {
+interface HeaderProps {
+  text?: string;
+}
+
+const Header = ({ text }: HeaderProps): ReactElement => {
   const setIsNavDrawerVisible = useSetRecoilState(isNavDrawerOpen);
   const setIsSocialLoginDrawerVisible = useSetRecoilState(isSocialLoginDrawerOpen);
 
@@ -36,7 +40,7 @@ const Header = (): ReactElement => {
     <>
       <StyledHeader>
         <Layout.Header>
-          <Typography.Text>칵테일</Typography.Text>
+          <Typography.Text>{text || '칵테일'}</Typography.Text>
           <BellOutlined />
           <MenuIcon onClick={toggleDrawerOpen} />
         </Layout.Header>

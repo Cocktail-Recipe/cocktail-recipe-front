@@ -3,6 +3,7 @@ import { debounce } from 'lodash';
 import { ChangeEvent, Dispatch, ReactElement, SetStateAction, useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { cocktailEnglishNameState, cocktailKoreanNameState } from '@/states/cocktail/cocktailCreate.state';
+import { StyledCocktailEditorInput, StyledCocktailEditorInputTitle } from './CocktailEditor.styled';
 
 const CocktailName = (): ReactElement => {
   const setKoreanName = useSetRecoilState(cocktailKoreanNameState);
@@ -23,12 +24,18 @@ const CocktailName = (): ReactElement => {
   );
 
   return (
-    <>
-      <Typography.Text>칵테일명 입력</Typography.Text>
+    <div>
+      <StyledCocktailEditorInputTitle>
+        <Typography.Text>칵테일명 입력</Typography.Text>
+      </StyledCocktailEditorInputTitle>
       {/* TODO: 한국어 영어 regex 설정 필요한지 확인 */}
-      <Input placeholder="한국어 이름" allowClear onChange={onChangeKoreanName} required maxLength={15} />
-      <Input placeholder="영어 이름" allowClear onChange={onChangeEnglishName} required maxLength={20} />
-    </>
+      <StyledCocktailEditorInput>
+        <Input placeholder="칵테일 한국명" allowClear onChange={onChangeKoreanName} required maxLength={15} />
+      </StyledCocktailEditorInput>
+      <StyledCocktailEditorInput>
+        <Input placeholder="칵테일 영문명" allowClear onChange={onChangeEnglishName} required maxLength={20} />
+      </StyledCocktailEditorInput>
+    </div>
   );
 };
 

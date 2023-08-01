@@ -6,6 +6,7 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     KakaoProvider({
       clientId: process.env.KAKAO_CLIENT_ID!,

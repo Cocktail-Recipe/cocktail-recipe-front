@@ -10,7 +10,7 @@ interface CocktailIngredientContainerProps {
 
 const CocktailIngredientContainer = ({ ingredients }: CocktailIngredientContainerProps): ReactElement => {
   return (
-    <Card title={'재료 정보'} extra={<CocktailIngredientUnitSelector />}>
+    <Card title="재료 정보" extra={<CocktailIngredientUnitSelector />}>
       <CocktailIngredientList ingredients={ingredients} />
     </Card>
   );

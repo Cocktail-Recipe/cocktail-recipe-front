@@ -32,20 +32,23 @@ const marks: SliderMarks = {
 };
 
 interface CocktailVolumeFilterProps {
-  onChangeCocktailVolume: (values: [number, number]) => void;
+  onChangeCocktailVolume: (values: [number, number] | number) => void;
+  isSingleRange?: boolean;
 }
 
-const CocktailVolumeFilter = ({ onChangeCocktailVolume }: CocktailVolumeFilterProps): ReactElement => {
+const CocktailVolumeFilter = ({
+  onChangeCocktailVolume,
+  isSingleRange = false,
+}: CocktailVolumeFilterProps): ReactElement => {
   return (
     <StyledCocktailVolumeFilter>
       <Space direction="vertical">
         <StyledCocktailFilterText>도수</StyledCocktailFilterText>
         <Slider
           marks={marks}
-          range
           min={0}
           max={40}
-          defaultValue={[0, 40]}
+          // range={isSingleRange ? ({ isDraggable: false } as SliderRange) : true}
           onChange={onChangeCocktailVolume}
           onAfterChange={onChangeCocktailVolume}
         />

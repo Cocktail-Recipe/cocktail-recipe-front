@@ -1,8 +1,8 @@
-// TODO: 데이터 type 확인
 export interface Ingredient {
-  thumbnail: string | null;
-  name: string;
   category: string | null;
-  amount: number;
-  unit: string;
+  ingredientId: number;
+  name: string;
+  thumbnail: string | null;
+  unit: string; // ml, oz
+  amount?: number;
 }
